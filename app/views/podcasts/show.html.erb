@@ -1,4 +1,5 @@
 <% if @podcasts %>
+	<h2><%= @podcasts.resultCount %> result(s)</h2>
 <% @podcasts.results.each do |podcast| %>
 <img src="<%= podcast.artworkUrl100 %>">
 	<li><%= podcast.collectionName %><br>
@@ -20,7 +21,7 @@
 		<%= u.hidden_field(:favorite, :value => true) %>
 		<% end %>
 		<%= f.submit "Add to favorites!" %>
-	<% end %>
+	<% end %><br>
 	</li>
 	<% end %>
 <% end %>
