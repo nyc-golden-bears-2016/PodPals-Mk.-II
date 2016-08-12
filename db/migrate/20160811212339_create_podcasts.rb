@@ -3,8 +3,6 @@ class CreatePodcasts < ActiveRecord::Migration[5.0]
     create_table :podcasts do |t|
       t.string :genre
       t.string :title
-      t.string :artist
-      t.text :description
 
       t.timestamps
     end
