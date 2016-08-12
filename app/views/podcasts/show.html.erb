@@ -1,0 +1,10 @@
+<% if @podcasts %>
+<% @podcasts.results.each do |podcast| %>
+<img src="<%= podcast.artworkUrl100 %>">
+	<li><%= podcast.collectionName %><br>
+	Hosts: <%= podcast.artistName %><br>
+	Tags: <%= podcast.genres %><br>
+	Listen to it here: <a href=<%= podcast.collectionViewUrl %>><%= podcast.collectionViewUrl %></a><br><br>
+	</li>
+	<% end %>
+<% end %>
