@@ -3,9 +3,9 @@ class PodcastsController < ApplicationController
 	end
 
 	def show
-		@podcasts = @@itunes.podcast(params[:search])
 		@podcast = Podcast.new
 		@userPods = PodcastUser.new
+		@podcasts = ITUNES_CLIENT.podcast(params[:search])
 	end
 
 	def new
@@ -39,3 +39,4 @@ class PodcastsController < ApplicationController
 		params.require(:podcast).permit(:title, :genre)
 	end
 end
+
