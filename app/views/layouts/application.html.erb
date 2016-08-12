@@ -7,7 +7,12 @@
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
-    This should display
+  <nav>
+    <%= button_to "Home", root_path, method: "get" %>
+    <%= button_to "Login", new_user_session_path, method: "get" %>
+    <%= button_to "Register", new_user_registration_path, method: "get" %>
+    <%= button_to "Logout", destroy_user_session_path, method: "get" %>
+  </nav>
   <body>
     <%= yield %>
   </body>
