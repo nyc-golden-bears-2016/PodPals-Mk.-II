@@ -1,4 +1,4 @@
-class PodcastsUsers < ActiveRecord::Migration[5.0]
+class PodcastUsers < ActiveRecord::Migration[5.0]
   def change
       create_table :podcasts_users do |t|
       t.integer :user_id, foreign_key: true, index: true

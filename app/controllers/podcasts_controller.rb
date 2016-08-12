@@ -3,7 +3,7 @@ class PodcastsController < ApplicationController
 	end
 
 	def show
-		@podcasts = @@itunes.podcast(params[:search])
+		@podcasts = ITUNES_CLIENT.podcast(params[:search])
 	end
 
 	def new
