@@ -7,7 +7,17 @@
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
-    This should display
+  <div class="container">
+    <nav>
+      <ul class="nav">
+        <li><%= link_to "Home", root_path, method: "get" %></li>
+        <li><%= link_to "Login", new_user_session_path, method: "get" %></li>
+        <li><%= link_to "Register", new_user_registration_path, method: "get" %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: "get" %></li>
+        <li><%= link_to "Go Back", request.referer %></li>
+      </ul>
+    </nav>
+  </div>
   <body>
     <%= yield %>
   </body>
