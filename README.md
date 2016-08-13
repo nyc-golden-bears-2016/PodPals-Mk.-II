@@ -5,7 +5,7 @@
     A user and guests can search for podcasts based on title or artists.
     A user can browse podcasts organized by genre.
     A user can have friends.
-    A user can recommend podcasts to their friends.
+    A user can recommend podcasts to their friends through sharing.
     A user can favorite podcasts.
     A user can add podcasts to their queue.
     A user or guest can browse user profiles.
