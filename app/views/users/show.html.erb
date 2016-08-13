@@ -1,6 +1,6 @@
 <h3><%= @user.email %><h3>
 <h3>In Queue</h3>
-	<% @sorted_genres.each do |genre_group| %>
+	<% @sorted_queue_genres.each do |genre_group| %>
 		<br><%= genre_group.first.genre %>
 			<% genre_group.each do |podcast| %>
 			<li><%= link_to podcast.title, podcast%><br>
@@ -8,8 +8,10 @@
 			<% end %>
 	<% end %>
 <h3>Favorites</h3>
-	<% @favorites.each do |favorite| %>
-	<h4><%= favorite.podcast.genre %></h4>
-			<li><%= link_to favorite.podcast.title, favorite.podcast %><br>
-			<%= favorite.podcast.artist %></li>
+	<% @sorted_favorite_genres.each do |genre_group| %>
+	<br><%= genre_group.first.genre %>
+			<% genre_group.each do |podcast| %>
+			<li><%= link_to podcast.title, podcast%><br>
+					<%= podcast.artist %></li>
+			<% end %>
 	<% end %>
