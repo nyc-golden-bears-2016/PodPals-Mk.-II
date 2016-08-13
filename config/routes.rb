@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   # post '/discussions/:discussion_id/comments/:id/' => 'comments#destroy'
 
   resources :users, only: :show
+  resources :friends, only: :create
 end
