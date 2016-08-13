@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	def show
-		@user = User.find(params[:id])
+    @user = User.find(params[:id])
 		@inQueue = PodcastUser.where(user_id: @user.id, in_queue: true)
     @inQueueGenres = @inQueue.map { |podcast_user| podcast_user.podcast.genre}.uniq
     @inQueuePodcasts = @inQueue.map { |pod_user| pod_user.podcast}
