@@ -1,27 +1,7 @@
-<% if @podcasts %>
-	<h2><%= @podcasts.resultCount %> result(s)</h2>
-<% @podcasts.results.each do |podcast| %>
-<img src="<%= podcast.artworkUrl100 %>">
-	<li><%= podcast.collectionName %><br>
-	Hosts: <%= podcast.artistName %><br>
-	Tags: <%= podcast.genres %><br>
-	Listen to it here: <a href=<%= podcast.collectionViewUrl %>><%= podcast.collectionViewUrl %></a><br><br>
-	<%= form_for(@podcast) do |f| %>
-		<%= f.hidden_field(:title, :value => podcast.collectionName) %>
-		<%= f.hidden_field(:genre, :value => podcast.primaryGenreName) %>
-		<% fields_for @userPods do |u| %>
-		<%= u.hidden_field(:in_queue, :value => true) %>
-		<% end %>
-		<%= f.submit "Add to queue!" %>
-	<% end %>
-	<%= form_for(@podcast) do |f| %>
-		<%= f.hidden_field(:title, :value => podcast.collectionName) %>
-		<%= f.hidden_field(:genre, :value => podcast.primaryGenreName) %>
-		<% fields_for @userPods do |u| %>
-		<%= u.hidden_field(:favorite, :value => true) %>
-		<% end %>
-		<%= f.submit "Add to favorites!" %>
-	<% end %><br>
-	</li>
-	<% end %>
+<%= @podcast.title %>
+
+<%= form_for([@podcast, @discussion]) do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_area :content, size: "60x12" %>
+  <%= f.submit "Create Discussion" %>
 <% end %>

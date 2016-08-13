@@ -1,0 +1,14 @@
+<h1><%= @discussion.title %></h1>
+<p><%= @discussion.content %></p>
+
+<h3>Comments</h3>
+<% if @discussion.comments %>
+  <% @discussion.comments.each do |comment| %>
+    <%= comment.content %>
+    <%= comment.user.email %>
+  <% end %>
+<% end %>
+
+<p><%= link_to "Edit", edit_discussion_path(@discussion)%></p>
+
+<%= button_to 'Delete', @article, method: :delete%>
