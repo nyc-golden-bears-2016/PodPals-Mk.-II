@@ -1,11 +1,17 @@
 class PodcastsController < ApplicationController
-	def index
+	def homepage
+
 	end
 
-	def show
+	def index
 		@podcast = Podcast.new
 		@userPods = PodcastUser.new
 		@podcasts = ITUNES_CLIENT.podcast(params[:search])
+	end
+
+	def show
+		@podcast = Podcast.find(params[:id])
+		@discussion = Discussion.new
 	end
 
 	def new

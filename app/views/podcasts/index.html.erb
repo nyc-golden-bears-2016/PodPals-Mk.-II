@@ -1,6 +1,26 @@
-<h1>PodPals</h1>
-
-<%= form_tag '/podcasts/show', :method => "get" do %>
-<%= text_field_tag :search, params[:term] %>
-<%= submit_tag "search" %>
+<% if @podcasts %>
+<% @podcasts.results.each do |podcast| %>
+<img src="<%= podcast.artworkUrl100 %>">
+  <li><%= podcast.collectionName %><br>
+  Hosts: <%= podcast.artistName %><br>
+  Tags: <%= podcast.genres %><br>
+  Listen to it here: <a href=<%= podcast.collectionViewUrl %>><%= podcast.collectionViewUrl %></a><br><br>
+  <%= form_for(@podcast) do |f| %>
+    <%= f.hidden_field(:title, :value => podcast.collectionName) %>
+    <%= f.hidden_field(:genre, :value => podcast.primaryGenreName) %>
+    <% fields_for @userPods do |u| %>
+    <%= u.hidden_field(:in_queue, :value => true) %>
+    <% end %>
+    <%= f.submit "Add to queue!" %>
+  <% end %>
+  <%= form_for(@podcast) do |f| %>
+    <%= f.hidden_field(:title, :value => podcast.collectionName) %>
+    <%= f.hidden_field(:genre, :value => podcast.primaryGenreName) %>
+    <% fields_for @userPods do |u| %>
+    <%= u.hidden_field(:favorite, :value => true) %>
+    <% end %>
+    <%= f.submit "Add to favorites!" %>
+  <% end %>
+  </li>
+  <% end %>
 <% end %>
