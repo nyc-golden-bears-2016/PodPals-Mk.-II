@@ -18,8 +18,10 @@ class PodcastsController < ApplicationController
 	end
 
 	def create
+		podcast_params = params.require(:podcast).permit(:title, :genre, :artist)
 		@podcast = Podcast.new(podcast_params)
 		results = ITUNES_CLIENT.podcast(podcast_params)
+		byebug
 		if results.resultCount == 0
 			redirect_to request.referer
 		else
@@ -44,10 +46,5 @@ class PodcastsController < ApplicationController
 	def destroy
 	end
 
-	private
-
-	def podcast_params
-		params.require(:podcast).permit(:title, :genre)
-	end
 end
 

@@ -1,9 +1,16 @@
 <h3><%= @user.email %><h3>
-<h3>In Queue </h3>
+<h3>In Queue</h3>
 	<% @inQueue.each do |queList| %>
-		<li><%= queList.podcast.title %></li>
+		<li><%= queList.podcast.title %>
+			<%= queList.podcast.genre %>
+			<%= queList.podcast.artist %>
+		</li>
 	<% end %>
 <h3>Favories</h3>
 	<% @favorites.each do |favorite| %>
-		<li><%= favorite.podcast.title %></li>
+		<li><%= favorite.podcast.title %>
+			<%= favorite.podcast.genre %>
+			<%= favorite.podcast.artist %>
+		</li>
+
 	<% end %>
