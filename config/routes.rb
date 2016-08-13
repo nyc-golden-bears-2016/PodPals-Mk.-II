@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   }
 
 
-
   # Discussions
   get '/podcasts/:podcast_id/discussions' => 'discussions#index'
   get '/podcasts/:podcast_id/discussions/new' => 'discussions#new'
@@ -18,4 +17,5 @@ Rails.application.routes.draw do
 
   # Podcasts
   get '/podcasts/homepage' => 'podcasts#homepage'
+  resources :users, only: :show
 end

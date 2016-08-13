@@ -1,12 +1,5 @@
 <%= @podcast.title %>
 
-<% if @podcast.discussions %>
-	<% @podcast.discussions.each do |discussion| %>
-		<%= link_to discussion, discussion.title %>
-	<% end %>
-<% end %>
-
-
 <%= form_for([@podcast, @discussion]) do |f| %>
   <%= f.text_field :title %>
   <%= f.text_area :content, size: "60x12" %>
