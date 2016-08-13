@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
   
   resources :discussions do
-    resources :comments, :only => [:create, :edit, :destroy]
+    resources :comments, :only => [:create]
   end
 
   devise_for :users, controllers: {
@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
 
   # Discussions
-  get '/podcasts/:podcast_id/discussions' => 'discussions#index'
   get '/podcasts/:podcast_id/discussions/new' => 'discussions#new'
   post '/podcasts/:podcast_id/discussions' => 'discussions#create'
 
@@ -24,9 +23,8 @@ Rails.application.routes.draw do
   
   # Comments
   post '/discussions/:discussion_id/comments' => 'comments#create'
-  # post '/discussions/:discussion_id/comments/:id/edit' => 'comments#edit'
-  # post '/discussions/:discussion_id/comments/:id/' => 'comments#destroy'
 
+  resources :comments
   resources :users, only: :show
   resources :friends, only: :create
 end
