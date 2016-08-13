@@ -75,8 +75,10 @@ ActiveRecord::Schema.define(version: 20160812202446) do
   create_table "podcasts", force: :cascade do |t|
     t.string   "genre"
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "artist"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

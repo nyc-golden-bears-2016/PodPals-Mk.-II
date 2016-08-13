@@ -1,13 +1,9 @@
 <h3><%= @user.email %><h3>
 <h3>In Queue </h3>
-<% @usersPodcasts.each do |userPodcast| %>
-	<% if userPodcast.in_queue == true %>
-		<li><%= userPodcast.podcast.title %></li>
+	<% @inQueue.each do |queList| %>
+		<li><%= queList.podcast.title %></li>
 	<% end %>
-<% end %>
-<h3>Favorites</h3>
-<% @usersPodcasts.each do |userPodcast| %>
-	<% if userPodcast.favorite == true %>
-		<li><%= userPodcast.podcast.title %></li>
+<h3>Favories</h3>
+	<% @favorites.each do |favorite| %>
+		<li><%= favorite.podcast.title %></li>
 	<% end %>
-<% end %>
