@@ -13,4 +13,12 @@ RSpec.describe User, type: :model do
       expect(test2.id).to be(nil)
     end
   end
+
+  describe User, "#discussions" do
+    it 'can create discussions' do
+      test_user = User.create(email: "test@gmail.com")
+      Comment.create(content: "test")
+      expect
+    end
+  end
 end
