@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   # Podcasts
   get '/podcasts/homepage' => 'podcasts#homepage'
   resources :users, only: :show
+  resources :friends, only: :create
 end
