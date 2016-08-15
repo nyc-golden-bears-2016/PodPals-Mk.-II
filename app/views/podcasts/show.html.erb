@@ -1,4 +1,15 @@
-<%= @podcast.title %>
+<h1><%= @podcast.title %></h1>
+
+<% if @podcast.discussions %>
+  <h2><%= @podcast.title %>'s Discussions</h2>
+  <% @podcast.discussions.each do |discussion| %>
+    <li>
+    <%= link_to discussion.title, discussion %>
+    </li>
+  <% end %>
+<% end %>
+
+
 
 <%= form_for([@podcast, @discussion]) do |f| %>
   <%= f.text_field :title %>

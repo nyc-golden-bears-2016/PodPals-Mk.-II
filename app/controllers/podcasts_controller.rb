@@ -20,8 +20,8 @@ class PodcastsController < ApplicationController
 
 	def create
 		@podcast = Podcast.new(podcast_params)
-		results = ITUNES_CLIENT.podcast(podcast_params)
-		if results.resultCount == 0
+		results = ITUNES_CLIENT.podcast("#{podcast_params[:title]} #{podcast_params[:artist]}")
+		if !results.resultCount
 			redirect_to request.referer
 		else
 			if @podcast.save && params['commit'] ==  'Add to queue!'
