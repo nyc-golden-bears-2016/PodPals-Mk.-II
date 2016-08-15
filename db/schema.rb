@@ -10,25 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160812202446) do
+ActiveRecord::Schema.define(version: 20160813205407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "artist_podcasts", force: :cascade do |t|
-    t.integer  "artist_id"
-    t.integer  "podcast_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["artist_id"], name: "index_artist_podcasts_on_artist_id", using: :btree
-    t.index ["podcast_id"], name: "index_artist_podcasts_on_podcast_id", using: :btree
-  end
-
-  create_table "artists", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -55,10 +40,20 @@ ActiveRecord::Schema.define(version: 20160812202446) do
   create_table "friends", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
+    t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["friend_id"], name: "index_friends_on_friend_id", using: :btree
     t.index ["user_id"], name: "index_friends_on_user_id", using: :btree
+  end
+
+  create_table "podcast_tags", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "podcast_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["podcast_id"], name: "index_podcast_tags_on_podcast_id", using: :btree
+    t.index ["tag_id"], name: "index_podcast_tags_on_tag_id", using: :btree
   end
 
   create_table "podcast_users", force: :cascade do |t|
@@ -75,6 +70,13 @@ ActiveRecord::Schema.define(version: 20160812202446) do
   create_table "podcasts", force: :cascade do |t|
     t.string   "genre"
     t.string   "title"
+    t.string   "artist"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

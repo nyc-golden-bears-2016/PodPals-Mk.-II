@@ -6,6 +6,7 @@ class PodcastsController < ApplicationController
 	def index
 		@podcast = Podcast.new
 		@userPods = PodcastUser.new
+		@tags = @podcast.tags.new
 		@podcasts = ITUNES_CLIENT.podcast(params[:search])
 	end
 
@@ -19,10 +20,10 @@ class PodcastsController < ApplicationController
 
 	def create
 		@podcast = Podcast.new(podcast_params)
-		# results = ITUNES_CLIENT.podcast(podcast_params)
-		# if results.resultCount == 0
-		# 	redirect_to request.referer
-		# else
+		results = ITUNES_CLIENT.podcast(podcast_params)
+		if results.resultCount == 0
+			redirect_to request.referer
+		else
 			if @podcast.save && params['commit'] ==  'Add to queue!'
 				PodcastUser.create(user_id: current_user.id, podcast_id: @podcast.id, in_queue: true)
 				redirect_to(current_user)
@@ -32,7 +33,7 @@ class PodcastsController < ApplicationController
 			else
 				redirect_to request.referer
 			end
-		# end
+		end
 	end
 
 	def edit
