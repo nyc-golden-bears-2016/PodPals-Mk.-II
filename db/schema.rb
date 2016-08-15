@@ -36,14 +36,14 @@ ActiveRecord::Schema.define(version: 20160813205407) do
     t.index ["user_id"], name: "index_discussions_on_user_id", using: :btree
   end
 
-  create_table "friends", force: :cascade do |t|
+  create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
     t.boolean  "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["friend_id"], name: "index_friends_on_friend_id", using: :btree
-    t.index ["user_id"], name: "index_friends_on_user_id", using: :btree
+    t.index ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
+    t.index ["user_id"], name: "index_friendships_on_user_id", using: :btree
   end
 
   create_table "podcast_tags", force: :cascade do |t|

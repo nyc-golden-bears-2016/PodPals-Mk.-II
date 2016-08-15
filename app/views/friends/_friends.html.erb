@@ -1,13 +1,23 @@
 <% unless @user.friends.empty? %>
-	<% @user.friends.each do |u| %>
-	<% if u.pending == false %>
-	<%= link_to u.friend.username, user_path(u.friend.id) %>
-	Since <%= u.created_at.to_s(:long) %>
-	<% if user_signed_in? && @user = current_user %>
-		<%= link_to '[Remove]', user_friend_path(:user_id => current_user, :id => u), :method => :delete, :confirm => 'Are you sure?' %>
+	<% @user.friendships.each do |u| %>
+		<% if u.pending == false %>
+			<%= link_to u.friend.username, user_path(u.friend.id) %>
+			Since <%= u.created_at.to_s(:long) %>
+			<% if user_signed_in? && @user = current_user %>
+				<%= link_to '[Remove]', user_friend_path(:user_id => current_user, :id => u), :method => :delete, :confirm => 'Are you sure?' %>
+			<% end %>
+		<% end %>
 	<% end %>
 <% end %>
-<% end %>
-	<% else %>
-		None
+
+<% if @user.inverse_friendships %>
+	<% @user.inverse_friendships.each do |u| %>
+		<% if u.pending == false %>
+			<%= link_to u.user.username, user_path(u.user.id) %>
+			since <%= u.created_at.to_s(:long) %>
+			<% if user_signed_in? && @user = current_user %>
+				<%= link_to '[Remove]', user_friend_path(:user_id => current_user, :id => u), :method => :delete, :confirm => 'Are you sure?' %>
+			<% end %>
+		<% end %>
+	<% end %>
 <% end %>
