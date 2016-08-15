@@ -2,7 +2,7 @@ class FriendsController < ApplicationController
 	before_action :user_signed_in?, :except => [:index, :show]
 	def index
 		@user = User.find(params[:user_id])
-		byebug
+		# byebug
 	end
 	
 	def show
@@ -10,13 +10,13 @@ class FriendsController < ApplicationController
 	end
 	
 	def new
-		@friendship = Friend.new
+		@friends = Friend.new
 	end
 
 	def create
 	@user = User.find(current_user)
-	@friend = User.find(params[:friend_id])
-	friend_params = {:user_id => @user.id, :friend_id => @friend.id, :status => 'pending'}
+	@friend = User.find(params[:user_id])
+	friend_params = {:user_id => @user.id, :friend_id => @friend.id, :pending => true}
 	@friendship = Friend.create(friend_params)
 		if @friendship.save
 			redirect_to user_friends_path(current_user)
@@ -28,7 +28,7 @@ class FriendsController < ApplicationController
 	def update
 	@user = User.find(current_user)
 	@friend = User.find(params[:id])
-		friend_params = {:user_id => @user.id, :friend_id => @friend.id, :status => 'accepted'}
+		friend_params = {:user_id => @user.id, :friend_id => @friend.id, :pending => false}
 			@friendship = Friend.find_by_user_id_and_friend_id(@user.id, @friend.id)
 		if @friendship.update_attributes(friend_params)
 			flash[:notice] = 'Friend sucessfully accepted!'
@@ -48,6 +48,6 @@ class FriendsController < ApplicationController
 	private
 
 	def friend_params
-		params.require(:friend).permit(:user_id, :friend_id, :status)
+		params.require(:friend).permit(:user_id, :friend_id, :pending)
 	end
 end

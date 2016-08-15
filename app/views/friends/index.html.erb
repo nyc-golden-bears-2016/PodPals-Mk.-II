@@ -1,9 +1,12 @@
 My Friends:
+ <% @user.friends.each do |friend| %>
+ 	<%= friend.user.username %><br>
+ <% end %>
 <% unless @user == current_user %>
 You do not have permission to access this page!
 <% else %>
 Current Friends:
-<%= render :partial => 'friends/friends' %>
+<%= render :partial => 'friends/friends' %><br>
 Pending Friends:
-<%= render :partial => 'friends/pending_friends' %>
+<%= render :partial => 'friends/pending_friends' %><br>
 <% end %>

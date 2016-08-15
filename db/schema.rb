@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20160813205407) do
   create_table "friends", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
-    t.string   "status"
+    t.boolean  "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["friend_id"], name: "index_friends_on_friend_id", using: :btree
@@ -67,16 +67,15 @@ ActiveRecord::Schema.define(version: 20160813205407) do
   end
 
   create_table "podcasts", force: :cascade do |t|
-    t.string   "genre"
-    t.string   "title"
-    t.string   "artist"
+    t.string   "genre",      null: false
+    t.string   "title",      null: false
+    t.string   "artist",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|
     t.string   "name",       null: false
-
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

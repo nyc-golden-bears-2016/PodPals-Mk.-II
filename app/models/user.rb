@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :friends 
+  has_many :friends, inverse_of: :user 
   has_many :podcast_users
   has_many :podcasts, through: :podcast_users
   has_many :votes, dependent: :destroy
