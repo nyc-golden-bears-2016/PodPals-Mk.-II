@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :podcasts do
     resources :discussions, shallow: true
   end
-  
+
   resources :discussions do
     resources :comments, :only => [:create]
   end
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   # Podcasts
   get '/podcasts/homepage' => 'podcasts#homepage'
-  
+
   # Comments
   post '/discussions/:discussion_id/comments' => 'comments#create'
 
