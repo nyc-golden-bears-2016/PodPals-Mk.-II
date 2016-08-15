@@ -44,10 +44,24 @@ class PodcastsController < ApplicationController
 	def destroy
 	end
 
+	def genres
+	end
+
+	def list
+		@results_url = "https://itunes.apple.com/us/rss/toppodcasts/genre=#{params[:genre_id]}/json"
+		@genre_results = HTTParty.get(@results_url)
+		@parsed_results = JSON.parse(@genre_results)
+		@title = @parsed_results
+		render :genres_top
+	end
+
 	private
-	
+
 	def podcast_params
 		params.require(:podcast).permit(:title, :genre, :artist)
+	end
+
+	def genre_params
 	end
 end
 

@@ -1,0 +1,11 @@
+<% category_ids = [['Arts', '1301'],['Comedy','1303'],['Education','1304'],['Kids & Family','1305'],['Health','1307'],['TV & Film','1309'],['Music','1310'],['News & Politics','1311'],['Religion & Spirituality', '1314'],['Science & Medicine', '1315'],['Technology', '1318'],['Business', '1321'],['Games & Hobbies', '1323'],['Society & Culture', '1324'],['Government & Organizations', '1325']] %>
+<div class="categories-container">
+  <% category_ids.each do |category| %>
+  <div class='category'>
+    <form method="get" action="/podcasts/genres/<%= category[0]%>">
+      <input type="hidden" name="genre_id" value="<%= category[1] %>">
+      <input type="submit" value="<%= category[0] %>">
+    </form>
+  </div>
+  <% end %>
+</div>
