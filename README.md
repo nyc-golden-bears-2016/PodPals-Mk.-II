@@ -12,10 +12,3 @@
     A user can like podcasts in their friends' queue.
     A user can post discussions about specific podcasts.
     A user can comment on discussion about specific podcasts.
-
-
-
-
-    1. Suggestions/Recommendations
-    2. Add button to Podcasts search results "view active discussions"
-    3. Exhaustive QA of routes
