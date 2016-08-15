@@ -1,0 +1,11 @@
+Top Podcasts
+
+<% @parsed_results["feed"]["entry"].each do |results| %>
+<br>
+<img src="<%= results["im:image"][2]["label"] %>"/>
+<p>Title: <%= results["im:name"]["label"] %></p>
+<p>Artist: <%= results["im:artist"]["label"] %></p>
+<p>Summary: <%= results["summary"]["label"] %></p>
+<p>Link: <a href="<%= results["link"]["attributes"]["href"]%>"><%= results["link"]["attributes"]["href"]%></a></p>
+<br>
+<% end %>s

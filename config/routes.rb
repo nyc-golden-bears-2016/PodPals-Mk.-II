@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root 'podcasts#homepage'
 
+  #Genres
+  get '/podcasts/genres' => 'podcasts#genres'
+  get '/podcasts/genres/:name' => 'podcasts#list'
+
   resources :podcasts do
     resources :discussions, shallow: true
   end
@@ -23,6 +27,7 @@ Rails.application.routes.draw do
 
   # Comments
   post '/discussions/:discussion_id/comments' => 'comments#create'
+
 
   resources :comments
   resources :users, only: :show
