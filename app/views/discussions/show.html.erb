@@ -6,9 +6,20 @@
   <% @discussion.comments.each do |comment| %>
     <%= comment.content %>
     <%= comment.user.email %>
+    <p><%= link_to "Edit Comment", edit_comment_path(comment)%></p>
+    <%= button_to "Delete Comment", comment, method: :delete %>
   <% end %>
 <% end %>
 
-<p><%= link_to "Edit", edit_discussion_path(@discussion)%></p>
+<% if @discussion %>
+  <%= form_for([@discussion, @comment]) do |f| %>
+    <% f.hidden_field(:user_id) %>
+    <%= f.text_area :content, size: "60x12" %>
+    <%= f.submit "Add Comment" %>
+  <% end %>
+<% end %>
 
-<%= button_to 'Delete', @article, method: :delete%>
+
+<p><%= link_to "Edit Discussion", edit_discussion_path(@discussion)%></p>
+
+<p><%= button_to 'Delete Discussion', @discussion, method: :delete%></p>

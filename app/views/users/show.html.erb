@@ -1,13 +1,17 @@
 <h3><%= @user.email %><h3>
 <h3>In Queue</h3>
-	<% @inQueue.each do |queList| %>
-		<li><%= link_to queList.podcast.title, queList.podcast %><br>
-			<%= queList.podcast.genre %><br>
-			<%= queList.podcast.artist %></li>
+	<% @sorted_queue_genres.each do |genre_group| %>
+		<br><%= genre_group.first.genre %>
+			<% genre_group.each do |podcast| %>
+			<li><%= link_to podcast.title, podcast%><br>
+					<%= podcast.artist %></li>
+			<% end %>
 	<% end %>
-<h3>Favories</h3>
-	<% @favorites.each do |favorite| %>
-		<li><%= link_to favorite.podcast.title, favorite.podcast %><br>
-			<%= favorite.podcast.genre %><br>
-			<%= favorite.podcast.artist %></li>
+<h3>Favorites</h3>
+	<% @sorted_favorite_genres.each do |genre_group| %>
+	<br><%= genre_group.first.genre %>
+			<% genre_group.each do |podcast| %>
+			<li><%= link_to podcast.title, podcast%><br>
+					<%= podcast.artist %></li>
+			<% end %>
 	<% end %>

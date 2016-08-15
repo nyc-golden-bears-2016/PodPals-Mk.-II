@@ -1,24 +1,32 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe User, "#email" do
+  describe "#email" do
     it 'has an email' do
-      test_user = User.create(email: "test@gmail.com")
-      expect(test_user.email).to eq("test@gmail.com")
+      user = User.create(email: "test@gmail.com", password: "testtest")
+      expect(user.email).to eq("test@gmail.com")
     end
 
     it 'has a unique email address' do
-      test1 = User.create(email: "test@gmail.com")
-      test2 = User.create(email: "test@gmail.com")
-      expect(test2.id).to be(nil)
+      user = User.create(email: "test@gmail.com", password: "testtest")
+      new_user = User.new(email: "test@gmail.com", password: "testtest")
+      expect(new_user.save).to be(false)
     end
   end
 
-  describe User, "#discussions" do
+  describe "#discussions" do
     it 'can create discussions' do
-      test_user = User.create(email: "test@gmail.com")
-      Comment.create(content: "test")
-      expect
+      user = User.create(email: "test@gmail.com", password: "testtest")
+      user.discussions.create(title: "test", content: "test")
+      expect(user.discussions.length).to eq(1)
+    end
+
+    it 'can delete discussions' do
+      binding.pry
+      user = User.create(email: "test@gmail.com", password: "testtest")
+      user.discussions.create(title: "test", content: "test")
+      Discussion.find_by(user_id: user.id).delete
+      expect(user.discussions.length).to eq(0)
     end
   end
 end
