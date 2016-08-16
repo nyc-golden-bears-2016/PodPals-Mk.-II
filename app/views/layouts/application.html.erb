@@ -4,6 +4,7 @@
     <title>Podpals</title>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'main' %>
     <%= csrf_meta_tags %>
   </head>
   <div class="container">
@@ -19,7 +20,7 @@
             <li><%= link_to "Logout", destroy_user_session_path, method: "get" %></li>
             <ul id="slide-out" class="side-nav">
     <li><div class="userView">
-      <img class="background" src="images/office.jpg">
+      <!-- <img class="background" src="images/office.jpg"> -->
       <!-- <a href="#!user"><img class="circle" src="images/yuna.jpg"></a> -->
       <a href="#!name"><span class="white-text name"><%= current_user.username %></span></a>
       <a href="#!email"><span class="white-text email"><%= current_user.email %></span></a>
