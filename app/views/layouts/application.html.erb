@@ -10,14 +10,18 @@
     <nav>
       <ul class="nav">
         <% if !user_signed_in? %>
-            <li><%= link_to "Search", root_path, method: "get" %></li>
-            <li><%= link_to "Login", new_user_session_path, method: "get" %></li>
-            <li><%= link_to "Register", new_user_registration_path, method: "get" %></li>
+        <li><%= link_to "Search", root_path, method: "get" %></li>
+        <li><%= link_to "Login", new_user_session_path, method: "get" %></li>
+        <li><%= link_to "Register", new_user_registration_path, method: "get" %></li>
+        <li><%= link_to "Browse Genres", podcasts_genres_path, method: "get" %></li>
         <% else %>
-            <li><%= link_to "Search", root_path, method: "get" %></li>
-            <li><%= link_to current_user.username, "/users/#{current_user.id}", method: "get" %></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method: "get" %></li>
-            <ul id="slide-out" class="side-nav">
+        <li><%= link_to "Search", root_path, method: "get" %></li>
+        <li><%= link_to current_user.username, "/users/#{current_user.id}", method: "get" %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: "get" %></li>
+        <li><%= link_to "Browse Genres", podcasts_genres_path, method: "get" %></li>
+      </ul>
+    </nav>
+      <ul id="slide-out" class="side-nav">
     <li><div class="userView">
       <!-- <img class="background" src="images/office.jpg"> -->
       <!-- <a href="#!user"><img class="circle" src="images/yuna.jpg"></a> -->
@@ -41,10 +45,8 @@
           <li><a class="subheader">Pending Requests</a></li>
           <%= render :partial => 'friends/pending_friends', locals: {user: current_user} %><br>
           <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-          </ul>
         <% end %>
       </ul>
-    </nav>
   </div>
   <body>
     <%= yield %>
