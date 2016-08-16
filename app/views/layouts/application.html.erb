@@ -27,30 +27,16 @@
           <li><a href="/users/<%= current_user.id %>"><i class="material-icons"></i>My Profile Page</a></li>
           <li><div class="divider"></div></li>
           <li><a class="subheader">Friends</a></li>
-          <li><div class="divider"></div></li>
-          <li><a class="subheader">Online</a></li>
           <% current_user.accepted_friends.each do |user| %>
-            <% if user.friend.online? && user.friend != current_user %>
+            <% if user.friend != current_user %>
                 <li><a class="waves-effect" href="/users/<%= user.friend_id %>"><%= user.friend.username %></a></li>
             <% end %>
           <% end %>
           <% current_user.accepted_inverse_friends.each do |friend| %>
-            <% if friend.user.online? && friend.user != current_user %>
+            <% if friend.user != current_user %>
                 <li><a class="waves-effect" href="/users/<%= friend.user_id %>"><%= friend.user.username %></a></li>
             <% end %>
-          <% end %>
-          <li><div class="divider"></div></li>
-          <li><a class="subheader">Offline</a></li>
-          <% current_user.accepted_friends.each do |user| %>
-            <% if user.friend.online? == false && user.friend != current_user %>
-                <li><a class="waves-effect" href="/users/<%= user.friend.id %>"><%= user.friend.username %></a></li>
-            <% end %>
-          <% end %>
-          <% current_user.accepted_inverse_friends.each do |friend| %>
-            <% if friend.user.online? == false && friend.user != current_user %>
-                <li><a class="waves-effect" href="/users/<%= friend.user_id %>"><%= friend.user.username %></a></li>
-            <% end %>
-          <% end %>            
+          <% end %>        
           <li><div class="divider"></div></li>
           <li><a class="subheader">Pending Requests</a></li>
           <%= render :partial => 'friends/pending_friends', locals: {user: current_user} %><br>
