@@ -15,6 +15,11 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :discussions, dependent: :destroy
 
+
+  def inverse_friends
+    self.inverse_friendships.where(pending: false)
+  end
+
   def online?
     self.online
   end
