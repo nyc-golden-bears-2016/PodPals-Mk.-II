@@ -16,6 +16,17 @@
 			<% end %>
 	<% end %>
 
+<h3>Recommendations</h3>
+<% @suggestions.each do |dracula| %>
+<% dracula["results"].each do |results| %>
+<br>
+<p><a href="<%= results["collectionViewUrl"]%>"><img src="<%= results["artworkUrl100"]%>"/></a></p>
+<p>Title: <%= results["collectionName"] %></p>
+<p>Artist: <%= results["artistName"] %></p>
+<br>
+<% end %>
+<% end %>
+
 <% if user_signed_in? %>
 	<% unless @user == current_user || current_user.friends.include?(@user) || current_user.pending_friends.include?(@user) %>
 		<%= form_for(:friendships, :url => user_friends_path(:user_id => current_user.id, :friend_id => @user.id)) do |f| %>

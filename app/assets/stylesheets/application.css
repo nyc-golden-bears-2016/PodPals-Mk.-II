@@ -132,3 +132,13 @@ body {
   -webkit-border-radius:4px;
   margin:50px auto;
 }
+
+.categories-container {
+  width: 75%;
+  margin: auto;
+}
+
+.category {
+  width: 18%;
+  display: inline-block;
+}
