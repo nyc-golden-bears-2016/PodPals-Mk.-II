@@ -54,15 +54,6 @@ ActiveRecord::Schema.define(version: 20160816182447) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "podcast_tags", force: :cascade do |t|
-    t.integer  "tag_id"
-    t.integer  "podcast_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["podcast_id"], name: "index_podcast_tags_on_podcast_id", using: :btree
-    t.index ["tag_id"], name: "index_podcast_tags_on_tag_id", using: :btree
-  end
-
   create_table "podcast_users", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "podcast_id"
