@@ -15,3 +15,14 @@
 					<%= podcast.artist %></li>
 			<% end %>
 	<% end %>
+
+<h3>Recommendations</h3>
+<% @suggestions.each do |dracula| %>
+<% dracula["results"].each do |results| %>
+<br>
+<p><a href="<%= results["collectionViewUrl"]%>"><img src="<%= results["artworkUrl100"]%>"/></a></p>
+<p>Title: <%= results["collectionName"] %></p>
+<p>Artist: <%= results["artistName"] %></p>
+<br>
+<% end %>
+<% end %>

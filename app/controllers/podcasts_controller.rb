@@ -1,4 +1,6 @@
 class PodcastsController < ApplicationController
+
+
 	def homepage
 
 	end
