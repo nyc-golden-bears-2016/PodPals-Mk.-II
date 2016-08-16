@@ -5,12 +5,23 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :friends, dependent: :destroy
+  has_many :friendships
+  has_many :friends, :through => :friendships
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
   has_many :podcast_users
   has_many :podcasts, through: :podcast_users
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :discussions, dependent: :destroy
+
+  def inverse_pending_friends
+    self.inverse_friendships.where(pending: true)
+  end
+
+  def pending_friends
+    self.friendships.where(pending: true)
+  end
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

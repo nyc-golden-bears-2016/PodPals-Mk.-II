@@ -42,8 +42,3 @@ class UsersController < ApplicationController
     end
 end
 
-# @comedy = @inQueuePodcasts.keep_if {|t| t.podcast.genre == "Comedy"}
-# @music = @inQueuePodcasts.keep_if {|t| t.podcast.genre == "Music"}
-
-# @inQueuePodcasts.chunk { |i| i.podcast.genre }
-

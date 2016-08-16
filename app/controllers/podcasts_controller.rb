@@ -8,6 +8,7 @@ class PodcastsController < ApplicationController
 	def index
 		@podcast = Podcast.new
 		@userPods = PodcastUser.new
+		@tags = @podcast.tags.new
 		@podcasts = ITUNES_CLIENT.podcast(params[:search])
 	end
 
