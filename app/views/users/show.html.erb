@@ -20,10 +20,13 @@
 <% @suggestions.each do |dracula| %>
 <% dracula["results"].each do |results| %>
 <br>
+<% unless @favoriteTitles.include?(results["collectionName"]) || @inQueueTitles.include?(results["collectionName"])%>
 <p><a href="<%= results["collectionViewUrl"]%>"><img src="<%= results["artworkUrl100"]%>"/></a></p>
 <p>Title: <%= results["collectionName"] %></p>
 <p>Artist: <%= results["artistName"] %></p>
 <br>
+
+<% end %>
 <% end %>
 <% end %>
 
