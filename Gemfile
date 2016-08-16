@@ -28,6 +28,7 @@ gem 'devise'
 gem 'pry-rails'
 gem 'itunes'
 gem 'httparty'
+gem 'materialize-sass'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
