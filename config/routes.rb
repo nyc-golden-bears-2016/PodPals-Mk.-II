@@ -31,5 +31,8 @@ Rails.application.routes.draw do
 
   resources :comments
   resources :users, only: :show
-  resources :friends, only: :create
+  
+  resources :users do
+    resources :friends
+  end
 end

@@ -1,0 +1,15 @@
+My Friends:<br>
+<% @user.inverse_friendships.where(pending: false).each do |friendship| %>
+ 	<%= friendship.user.username %><br>
+ <% end %>
+ <% @user.friendships.where(pending: false).each do |friendship| %>
+ 	<%= friendship.friend.username %><br>
+ <% end %>
+<% unless @user == current_user %>
+You do not have permission to access this page!
+<% else %>
+Current Friends:<br>
+<%= render :partial => 'friends/friends' %><br>
+Pending Friends:<br>
+<%= render :partial => 'friends/pending_friends' %><br>
+<% end %>

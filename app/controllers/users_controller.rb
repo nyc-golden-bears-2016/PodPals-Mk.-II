@@ -7,11 +7,6 @@ class UsersController < ApplicationController
 		@favorites = PodcastUser.where(user_id: @user.id, favorite: true)
     @favoriteGenres = @favorites.map { |podcast_user| podcast_user.podcast.genre}.uniq
     @favoritePodcasts = @favorites.map { |pod_user| pod_user.podcast}
-    if @user.id != current_user.id && Friend.where(user_id: @user.id, friend_id: current_user.id).count == 0
-      @friend = Friend.new
-      render '/friends/new'
-    end
-
     @sorted_queue_genres = queue_genre_groups
     @sorted_favorite_genres = favorite_genre_groups
   end
@@ -34,9 +29,4 @@ class UsersController < ApplicationController
       end
     end
 end
-
-# @comedy = @inQueuePodcasts.keep_if {|t| t.podcast.genre == "Comedy"}
-# @music = @inQueuePodcasts.keep_if {|t| t.podcast.genre == "Music"}
-
-# @inQueuePodcasts.chunk { |i| i.podcast.genre }
 

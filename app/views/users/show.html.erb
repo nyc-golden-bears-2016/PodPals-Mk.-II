@@ -15,3 +15,12 @@
 					<%= podcast.artist %></li>
 			<% end %>
 	<% end %>
+
+<% if user_signed_in? %>
+	<% unless @user == current_user || current_user.friends.include?(@user) || current_user.pending_friends.include?(@user) %>
+		<%= form_for(:friendships, :url => user_friends_path(:user_id => current_user.id, :friend_id => @user.id)) do |f| %>
+			<%= f.submit "Add to My Friends" %>
+		<% end %>
+	<% end %>
+<% end %>
+
