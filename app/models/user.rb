@@ -15,7 +15,6 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :discussions, dependent: :destroy
 
-
   def accepted_inverse_friends
     self.inverse_friendships.where(pending: false)
   end
