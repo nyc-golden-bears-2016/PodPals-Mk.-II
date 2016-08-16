@@ -6,6 +6,12 @@
 			<img src="<%= podcast.image100 %>">
 			<li><%= link_to podcast.title, podcast%><br>
 					<%= podcast.artist %></li><br>
+					<%= form_for(@like) do |f| %>
+					  <%= f.hidden_field(:user_id, :value => current_user.id) %>
+					  <%= f.hidden_field(:likeable_id, :value => podcast.id) %>
+					  <%= f.hidden_field(:likeable_type, :value => podcast.class.name) %>
+					  <%= f.submit "LIKE" %>
+					<% end %>
 			<% end %>
 	<% end %>
 <h3>Favorites</h3>
@@ -15,6 +21,13 @@
 			<img src="<%= podcast.image100 %>">
 			<li><%= link_to podcast.title, podcast%><br>
 					<%= podcast.artist %></li>
+					<%= podcast.likes.count %>
+					<%= form_for(@like) do |f| %>
+					  <%= f.hidden_field(:user_id, :value => current_user.id) %>
+					  <%= f.hidden_field(:likeable_id, :value => podcast.id) %>
+					  <%= f.hidden_field(:likeable_type, :value => podcast.class.name) %>
+					  <%= f.submit "LIKE" %>
+					<% end %>
 			<% end %>
 	<% end %>
 <h3>Recommendations</h3>
