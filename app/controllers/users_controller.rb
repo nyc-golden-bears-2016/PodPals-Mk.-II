@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @category_hash = @category_ids.to_h
     @suggestions = (@favoriteGenres.map {|genre| JSON.parse(HTTParty.get("https://itunes.apple.com/search?term=podcast&genreId=#{@category_hash[genre]}"))}).shuffle
     @like = Like.new
+    # byebug
   end
 
   private
