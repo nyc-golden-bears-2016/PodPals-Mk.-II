@@ -70,6 +70,9 @@ ActiveRecord::Schema.define(version: 20160813205407) do
     t.string   "genre",      null: false
     t.string   "title",      null: false
     t.string   "artist",     null: false
+    t.string   "image30"
+    t.string   "image60"
+    t.string   "image100"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

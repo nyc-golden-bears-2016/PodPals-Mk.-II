@@ -61,7 +61,7 @@ class PodcastsController < ApplicationController
 	private
 
 	def podcast_params
-		params.require(:podcast).permit(:title, :genre, :artist)
+		params.require(:podcast).permit(:title, :genre, :artist, :image30, :image60, :image100)
 	end
 
 	def genre_params

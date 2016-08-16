@@ -3,6 +3,7 @@
 	<% @sorted_queue_genres.each do |genre_group| %>
 		<h3><%= genre_group.first.genre %></h3><br>
 			<% genre_group.each do |podcast| %>
+			<img src="<%= podcast.image100 %>">
 			<li><%= link_to podcast.title, podcast%><br>
 					<%= podcast.artist %></li><br>
 			<% end %>
@@ -11,6 +12,7 @@
 	<% @sorted_favorite_genres.each do |genre_group| %>
 	<h3><%= genre_group.first.genre %></h3><br>
 			<% genre_group.each do |podcast| %>
+			<img src="<%= podcast.image100 %>">
 			<li><%= link_to podcast.title, podcast%><br>
 					<%= podcast.artist %></li>
 			<% end %>
