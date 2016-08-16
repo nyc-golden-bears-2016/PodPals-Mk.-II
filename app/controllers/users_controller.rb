@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @category_ids = [['Arts', '1301'],['Comedy','1303'],['Education','1304'],['Kids & Family','1305'],['Health','1307'],['TV & Film','1309'],['Music','1310'],['News & Politics','1311'],['Religion & Spirituality', '1314'],['Science & Medicine', '1315'],['Technology', '1318'],['Business', '1321'],['Games & Hobbies', '1323'],['Society & Culture', '1324'],['Government & Organizations', '1325'], ['Places & Travel','1320'], ['Food','1306'], ['Literature', '1401'], ['Shopping', '1472'], ['Investing', '1412']]
     @category_hash = @category_ids.to_h
     @suggestions = (@favoriteGenres.map {|genre| JSON.parse(HTTParty.get("https://itunes.apple.com/search?term=podcast&genreId=#{@category_hash[genre]}"))}).shuffle
+    @like = Like.new
   end
 
   private
