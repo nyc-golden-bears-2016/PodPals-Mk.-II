@@ -30,13 +30,17 @@ class PodcastsController < ApplicationController
 			if @podcast.save && params['commit'] ==  'Add to queue!'
 				PodcastUser.create(user_id: current_user.id, podcast_id: @podcast.id, in_queue: true)
 				redirect_to(current_user)
+			# binding.pry
 			elsif @podcast.save && params['commit'] ==  'Add to favorites!'
 				PodcastUser.create(user_id: current_user.id, podcast_id: @podcast.id, favorite: true)
 				redirect_to(current_user)
+				# binding.pry
 			elsif existing_podcast && params['commit'] == 'View active discussions'
-				redirect_to(existing_podcast)
+				redirect_to discussion_path(@podcast, @discussion)
+				# binding.pry
 			elsif @podcast.save && params['commit'] == 'View active discussions'
 				redirect_to(@podcast)
+				# binding.pry
 			else
 				redirect_to request.referer
 			end
