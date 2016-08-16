@@ -8,7 +8,6 @@ class PodcastsController < ApplicationController
 	def index
 		@podcast = Podcast.new
 		@userPods = PodcastUser.new
-		@tags = @podcast.tags.new
 		@podcasts = ITUNES_CLIENT.podcast(params[:search])
 	end
 
@@ -23,6 +22,7 @@ class PodcastsController < ApplicationController
 	def create
 		@podcast = Podcast.new(podcast_params)
 		results = ITUNES_CLIENT.podcast("#{podcast_params[:title]} #{podcast_params[:artist]}")
+		existing_podcast = Podcast.find_by(title: @podcast.title)
 		if !results.resultCount
 			redirect_to request.referer
 		else
@@ -32,6 +32,10 @@ class PodcastsController < ApplicationController
 			elsif @podcast.save && params['commit'] ==  'Add to favorites!'
 				PodcastUser.create(user_id: current_user.id, podcast_id: @podcast.id, favorite: true)
 				redirect_to(current_user)
+			elsif existing_podcast && params['commit'] == 'View active discussions'
+				redirect_to(existing_podcast)
+			elsif @podcast.save && params['commit'] == 'View active discussions'
+				redirect_to(@podcast)
 			else
 				redirect_to request.referer
 			end
