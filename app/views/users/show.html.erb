@@ -1,4 +1,11 @@
-<h3><%= @user.email %><h3>
+<h3><%= @user.username %><h3>
+<% if user_signed_in? %>
+	<% unless @user == current_user || current_user.friends.include?(@user) || current_user.pending_friends.include?(@user) || current_user.inverse_friends.include?(@user) || current_user.inverse_pending_friends.include?(@user) %>
+		<%= form_for(:friendships, :url => user_friends_path(:user_id => current_user.id, :friend_id => @user.id)) do |f| %>
+			<%= f.submit "Add to My Friends" %>
+		<% end %>
+	<% end %>
+<% end %>
 <h3>In Queue</h3>
 	<% @sorted_queue_genres.each do |genre_group| %>
 		<h3><%= genre_group.first.genre %></h3><br>
@@ -6,7 +13,7 @@
 			<img src="<%= podcast.image100 %>">
 			<li><%= link_to podcast.title, podcast%><br>
 					<%= podcast.artist %></li><br>
-					<% if user_signed_in? %>
+					<% if user_signed_in? && (@user.friends.include?(current_user) || @user.inverse_friends.include?(current_user)) %>
 					<%= form_for(@like) do |f| %>
 					  <%= f.hidden_field(:user_id, :value => current_user.id) %>
 					  <%= f.hidden_field(:likeable_id, :value => podcast.id) %>
@@ -27,7 +34,7 @@
 			<li><%= link_to podcast.title, podcast%><br>
 					<%= podcast.artist %></li>
 					<%= podcast.likes.count %>
-					<% if user_signed_in? %>
+					<% if user_signed_in? && (@user.friends.include?(current_user) || @user.inverse_friends.include?(current_user)) %>
 					<%= form_for(@like) do |f| %>
 					  <%= f.hidden_field(:user_id, :value => current_user.id) %>
 					  <%= f.hidden_field(:likeable_id, :value => podcast.id) %>
@@ -67,14 +74,6 @@
 		    		<% end %>
 		    		<%= f.submit "Add to favorites!" %>
 		    	<% end %>
-		<% end %>
-	<% end %>
-<% end %>
-
-<% if user_signed_in? %>
-	<% unless @user == current_user || current_user.friends.include?(@user) || current_user.pending_friends.include?(@user) || current_user.inverse_friends.include?(@user) || current_user.inverse_pending_friends.include?(@user) %>
-		<%= form_for(:friendships, :url => user_friends_path(:user_id => current_user.id, :friend_id => @user.id)) do |f| %>
-			<%= f.submit "Add to My Friends" %>
 		<% end %>
 	<% end %>
 <% end %>
