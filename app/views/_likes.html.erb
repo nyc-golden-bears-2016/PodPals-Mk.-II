@@ -1,0 +1,6 @@
+<%= form_for(@like) do |f| %>
+  <%= f.hidden_field(:user_id, :value => current_user.id) %>
+  <%= f.hidden_field(:likeable_id, :value => @podcast.id) %>
+  <%= f.hidden_field(:likeable_type, :value => @podcast.class.name) %>
+  <%= f.submit "LIKE" %>
+<% end %>

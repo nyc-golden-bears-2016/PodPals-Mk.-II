@@ -4,5 +4,6 @@ class Podcast < ApplicationRecord
   has_many :podcast_users
   has_many :users, through: :podcast_users
   has_many :podcast_tags
+  has_many :likes, as: :likeable
 end
 
