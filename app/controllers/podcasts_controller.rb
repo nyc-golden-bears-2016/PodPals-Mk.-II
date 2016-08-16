@@ -33,8 +33,10 @@ class PodcastsController < ApplicationController
 			elsif @podcast.save && params['commit'] ==  'Add to favorites!'
 				PodcastUser.create(user_id: current_user.id, podcast_id: @podcast.id, favorite: true)
 				redirect_to(current_user)
+
 			elsif existing_podcast && params['commit'] == 'View active discussions'
-				redirect_to(existing_podcast)
+				redirect_to podcast_path(existing_podcast)
+
 			elsif @podcast.save && params['commit'] == 'View active discussions'
 				redirect_to(@podcast)
 			else

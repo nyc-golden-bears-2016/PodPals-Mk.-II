@@ -38,9 +38,6 @@
     <%= f.hidden_field(:image30, :value => podcast.artworkUrl30) %>
     <%= f.hidden_field(:image60, :value => podcast.artworkUrl60) %>
     <%= f.hidden_field(:image100, :value => podcast.artworkUrl100) %>
-  <%= fields_for @userPods do |u| %>
-    <%= u.hidden_field(:discussion, :value => true) %>
-  <% end %>
   <%= f.submit "View active discussions" %>
   <% end %>
   </li>
