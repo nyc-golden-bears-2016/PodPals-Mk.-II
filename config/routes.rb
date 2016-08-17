@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     resources :discussions, shallow: true
   end
 
+  resources :podcasts do
+    resources :shares, only: [:create]
+  end
+
   resources :discussions do
     resources :comments, :only => [:create]
   end
