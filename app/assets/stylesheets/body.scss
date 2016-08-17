@@ -1,6 +1,12 @@
-body {
+.body-container {
   font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
+  margin-top: 70px;
+  margin: auto;
+  width: 80%;
+  display: inline-block;
+  text-align: center;
+}
+
+body {
   background: #e6e6e6;
-  padding-top: 70px;
-  margin: 1px auto;
 }
