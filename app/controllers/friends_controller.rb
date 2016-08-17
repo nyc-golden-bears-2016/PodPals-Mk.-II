@@ -17,7 +17,7 @@ class FriendsController < ApplicationController
 	@friend = User.find(params[:friend_id])
 	friend_params = {:user_id => @user.id, :friend_id => @friend.id, :pending => true}	
 	@friendship = Friendship.new(friend_params)
-		if @friendship.save
+		if @friendship.save && @user.id != @friend.id
 			redirect_to user_friends_path(current_user)
 		else
 			redirect_to user_path(current_user)
