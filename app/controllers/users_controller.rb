@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  def index
+    @searched_users = User.where(username: params[:search])
+    @users = User.all
+  end
+
 	def show
     @user = User.find(params[:id])
     @userPods = PodcastUser.new
