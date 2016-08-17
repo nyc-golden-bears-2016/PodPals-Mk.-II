@@ -21,6 +21,15 @@ class UsersController < ApplicationController
     # byebug
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      redirect_to(@user)
+    else
+      redirect_to request.referer
+    end
+  end
+
   private
 
     def queue_genre_groups
@@ -43,6 +52,10 @@ class UsersController < ApplicationController
       @favoriteGenres.map do |genre|
         results = HTTParty.get("https://itunes.apple.com/search?term=podcast&genreId#{genre}&limit=5")
       end
+    end
+
+    def user_params
+      params.require(:user).permit(:avatar)
     end
 end
 

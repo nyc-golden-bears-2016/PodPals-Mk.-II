@@ -29,6 +29,8 @@ gem 'pry-rails'
 gem 'itunes'
 gem 'httparty'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
