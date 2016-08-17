@@ -1,3 +1,46 @@
+.navbar-inverse .navbar-nav > li {
+  width: auto;
+}
+
+.navbar-inverse .navbar-nav > li:hover {
+  background-color: #428bca;
+}
 .navbar-inverse .navbar-nav > li > a {
-     color: #428bca;
+  color: #428bca;
+  padding: 15px;
+}
+
+.friends-list {
+  margin-top: 70px;
+  display: inline-block;
+  float: left;
+  margin-left: 50px;
+  z-index: 2;
+  position: relative;
+  width: 200px;
+  vertical-align: bottom;
+}
+
+.user-email {
+  font-size: 14px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.user-name {
+  font-size: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.user-name:hover {
+  font-style: normal;
+}
+
+.user {
+  border: solid #090909 1px;
+  border-radius: 10px 10px 0px 0px;
 }
