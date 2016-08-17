@@ -25,6 +25,7 @@
 					<%= link_to "Remove from queue", "/podcastusers/#{PodcastUser.find_by(user_id: @user.id, podcast_id: podcast.id).id}", :method => 'delete' %>
 					<% end %>
 			<% end %>
+			<%= render :partial => 'podcasts/share' %>
 	<% end %>
 <h3>Favorites</h3>
 	<% @sorted_favorite_genres.each do |genre_group| %>
@@ -46,6 +47,7 @@
 					<%= link_to "Remove from favorites", "/podcastusers/#{PodcastUser.find_by(user_id: @user.id, podcast_id: podcast.id).id}", :method => 'delete' %>
 					<% end %>
 			<% end %>
+			<%= render :partial => 'podcasts/share' %>
 	<% end %>
 <h3>Recommendations</h3>
 <% @suggestions.each do |recommendation| %>
