@@ -15,6 +15,7 @@ class PodcastsController < ApplicationController
 		@podcast = Podcast.find(params[:id])
 		@discussion = Discussion.new
 		@like = Like.new
+		@share = Share.new
 	end
 
 	def new

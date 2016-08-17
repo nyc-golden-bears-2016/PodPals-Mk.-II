@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :discussions, dependent: :destroy
+  has_many :shares
+  has_many :sent_shares, :class_name => "Share", :foreign_key => "sender_id"
+  has_many :recieved_shares, :class_name => "Share", :foreign_key => "recipient_id"
   has_attached_file :avatar, styles: {
     thumb: '100x100>',
     square: '200x200#',

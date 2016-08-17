@@ -22,6 +22,7 @@
         </ul>
       </div>
     </nav>
+    <% if user_signed_in? %>
       <ul id="slide-out" class="side-nav">
     <li><div class="userView">
       <!-- <img class="background" src="images/office.jpg"> -->
@@ -44,10 +45,18 @@
           <% end %>
           <li><div class="divider"></div></li>
           <li><a class="subheader">Pending Requests</a></li>
-          <%= render :partial => 'friends/pending_friends', locals: {user: current_user} %><br>
+            <%= render :partial => 'friends/pending_friends', locals: {user: current_user} %><br>
+          <li><div class="divider"></div></li>
+          <li><a class="subheader">Shares Feed</a></li>
+            <% current_user.recieved_shares.each do |share| %>
+              <%= link_to share.podcast.title, share.podcast %><br>
+              Shared By: <%= share.sender.username %> on <%= share.created_at.to_s(:long) %><br>
+            <% end %>
+            <li><div class="divider"></div></li>
           <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
       </ul>
   </div>
+  <% end %>
   <body>
     <div class="body-container">
     <%= yield %>
