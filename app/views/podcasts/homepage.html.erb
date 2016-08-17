@@ -2,5 +2,5 @@
 
 <%= form_tag '/podcasts', :method => "get" do %>
 <%= text_field_tag :search, params[:term] %>
-<%= submit_tag "search" %>
+<%= submit_tag "search", class: "btn btn-default", type:"button"%>
 <% end %>
