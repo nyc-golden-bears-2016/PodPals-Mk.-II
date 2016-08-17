@@ -1,0 +1,8 @@
+<select>
+  <% current_user.friends.each do |friend| %>
+    <% if friend != current_user %>
+      <option value="" diabled selected>Share</option>
+      <option value=<%= friend.id %>><%= friend.username %></option>
+    <% end %>
+  <% end %>
+</select>
