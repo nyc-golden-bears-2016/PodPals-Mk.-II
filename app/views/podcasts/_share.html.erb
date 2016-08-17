@@ -1,10 +1,12 @@
-<form action="" method="GET">
+<form action="/podcasts/share?podcast=<%= @podcast.id %>&friend=" method="GET">
   <select>
+    <option value="" diabled selected>Choose a Friend</option>
     <% current_user.friends.each do |friend| %>
-      <% if friend != current_user %>
-        <option value="" diabled selected>Share</option>
-        <option value=<%= friend.id %>><%= friend.username %></option>
-      <% end %>
+        <option value="<%= friend.id %>"><%= friend.username %></option>
     <% end %>
+    <% current_user.inverse_friends.each do |friend| %>
+        <option value="<%= friend.id %>"><%= friend.username %></option>
+    <% end %>      
   </select>
+  <input type="submit" value="Share Podcast">
 </form>
