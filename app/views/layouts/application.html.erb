@@ -54,9 +54,13 @@
               <li><%= link_to share.podcast.title, share.podcast %><br>
               Shared By: <%= share.sender.username %> on <%= share.created_at.to_s(:long) %></li>
             <% end %>
-      </div>
+    </div>
+  <% end %>
+  <div class="errors">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: "alert alert-info" %>
     <% end %>
-
+  </div>
   <body>
     <div class="body-container">
     <%= yield %>
