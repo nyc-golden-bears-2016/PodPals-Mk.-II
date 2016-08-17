@@ -24,7 +24,9 @@ class User < ApplicationRecord
   }
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-
+  validates :username, presence: true, uniqueness: true
+  validates :email, :password, presence: true
+  validates :email, uniqueness: true
 
   def accepted_inverse_friends
     self.inverse_friendships.where(pending: false)
