@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   #Genres
   get '/podcasts/genres' => 'podcasts#genres'
   get '/podcasts/genres/:name' => 'podcasts#list'
+  get '/podcasts/:id/share' => 'podcasts#share'
 
   resources :podcasts do
     resources :discussions, shallow: true
