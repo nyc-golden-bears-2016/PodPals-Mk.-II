@@ -1,6 +1,6 @@
 <h1>PodPals</h1>
 
 <%= form_tag '/podcasts', :method => "get" do %>
-<%= text_field_tag :search, params[:term] %>
+<%= text_field_tag :search, params[:term], class: "form-control", placeholder: "" %>
 <%= submit_tag "search", class: "btn btn-default", type:"button"%>
 <% end %>
