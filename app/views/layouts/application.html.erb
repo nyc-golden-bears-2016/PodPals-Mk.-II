@@ -32,8 +32,7 @@
           <a href="#!name"><h4 class="user-name"><%= current_user.username %></h4></a>
           <a href="#!email"><h4 class="user-email"><%= current_user.email %></h4></a>
         </div>
-          <a href="/users/<%= current_user.id %>"><i class="material-icons"></i>My Profile Page</a>
-          <div class="divider"></div>
+        <div class="notification-content">
           <a class="subheader">Friends</a>
           <% current_user.accepted_friends.each do |user| %>
             <% if user.friend != current_user %>
@@ -54,6 +53,7 @@
               <li><%= link_to share.podcast.title, share.podcast %><br>
               Shared By: <%= share.sender.username %> on <%= share.created_at.to_s(:long) %></li>
             <% end %>
+        </div>
       </div>
     <% end %>
 

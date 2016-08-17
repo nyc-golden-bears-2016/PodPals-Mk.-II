@@ -3,6 +3,6 @@
 
   <%= form_tag '/podcasts', :method => "get", class: "form-inline" do %>
   <%= text_field_tag :search, params[:term], class: "form-control", placeholder: "Search for Podcasts" %>
-  <%= submit_tag "Search", class: "btn btn-default", type:"button"%>
+  <%= submit_tag "Search", class: "btn btn-default"%>
   <% end %>
 </div>
