@@ -5,7 +5,7 @@ class SharesController < ApplicationController
 		@share = Share.new(share_params)
 		if @share.save
 			redirect_to @podcast,
-			alert: "Share was successful!"
+			alert: "Successfully shared with #{@share.recipient.username}"
 		else
 			redirect_to request.referer,
 			alert: "Share was unsuccessful"

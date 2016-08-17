@@ -2,6 +2,7 @@
   <h1>Login</h1>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
   <div class="field">
     <%= f.label :login %><br />
     <%= f.email_field :login, autofocus: true %>

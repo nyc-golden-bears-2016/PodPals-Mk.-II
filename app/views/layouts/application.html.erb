@@ -58,6 +58,11 @@
       </ul>
   </div>
   <% end %>
+  <div class="errors">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: "alert alert-info" %>
+    <% end %>
+  </div>
   <body>
     <div class="body-container">
     <%= yield %>
