@@ -16,9 +16,10 @@
   float: left;
   margin-left: 50px;
   z-index: 2;
-  position: relative;
-  width: 200px;
-  vertical-align: bottom;
+  width: 20%;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
 }
 
 .user-email {
@@ -26,6 +27,7 @@
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
+  display: inline-block;
 }
 
 .user-name {
@@ -34,6 +36,7 @@
   margin-right: 5px;
   margin-top: 5px;
   text-align: center;
+  display: inline-block;
 }
 
 .user-name:hover {
@@ -43,4 +46,14 @@
 .user {
   border: solid #090909 1px;
   border-radius: 10px 10px 0px 0px;
+}
+
+.notification-content {
+  border: solid #090909 1px;
+  border-radius: 0px 0px 10px 10px;
+}
+.notifications-content-margin {
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }

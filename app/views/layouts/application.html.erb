@@ -32,35 +32,32 @@
           <a href="#!name"><h4 class="user-name"><%= current_user.username %></h4></a>
           <a href="#!email"><h4 class="user-email"><%= current_user.email %></h4></a>
         </div>
-          <a href="/users/<%= current_user.id %>"><i class="material-icons"></i>My Profile Page</a>
-          <div class="divider"></div>
-          <a class="subheader">Friends</a>
-          <% current_user.accepted_friends.each do |user| %>
-            <% if user.friend != current_user %>
-                <a class="friend-entry" href="/users/<%= user.friend_id %>"><%= user.friend.username %></a>
+        <div class="notification-content">
+          <div class="notifications-content-margin">
+            <a class="notifications-friends">Friends</a>
+            <% current_user.accepted_friends.each do |user| %>
+              <% if user.friend != current_user %>
+                  <a class="friend-entry" href="/users/<%= user.friend_id %>"><%= user.friend.username %></a>
+              <% end %>
             <% end %>
-          <% end %>
-          <% current_user.accepted_inverse_friends.each do |friend| %>
-            <% if friend.user != current_user %>
-                <li><a class="waves-effect" href="/users/<%= friend.user_id %>"><%= friend.user.username %></a></li>
+            <% current_user.accepted_inverse_friends.each do |friend| %>
+              <% if friend.user != current_user %>
+                  <li><a href="/users/<%= friend.user_id %>"><%= friend.user.username %></a></li>
+              <% end %>
             <% end %>
-          <% end %>
-          <div class="divider"></div>
-          <a class="subheader">Pending Requests</a>
-            <li><%= render :partial => 'friends/pending_friends', locals: {user: current_user} %></li><br>
-          <div class="divider"></div>
-          <a class="subheader">Shares Feed</a>
-            <% current_user.recieved_shares.order('updated_at DESC').limit(5).each do |share| %>
-              <li><%= link_to share.podcast.title, share.podcast %><br>
-              Shared By: <%= share.sender.username %> on <%= share.created_at.to_s(:long) %></li>
-            <% end %>
-    </div>
-  <% end %>
-  <div class="errors">
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, class: "alert alert-info" %>
-    <% end %>
-  </div>
+            <div class="divider"></div>
+            <p class="notifications-pending">Pending Requests</p>
+              <li><%= render :partial => 'friends/pending_friends', locals: {user: current_user} %></li><br>
+            <div class="divider"></div>
+            <a class="notifications-shares">Shares Feed</a>
+              <% current_user.recieved_shares.order('updated_at DESC').limit(5).each do |share| %>
+                <li><%= link_to share.podcast.title, share.podcast %><br>
+                Shared By: <%= share.sender.username %> on <%= share.created_at.to_s(:long) %></li>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
   <body>
     <div class="body-container">
     <%= yield %>
