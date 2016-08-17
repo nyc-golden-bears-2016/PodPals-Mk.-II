@@ -25,6 +25,7 @@
   width: 100%;
 }
 
+
 #masonry-container {
   margin-top: 70px;
   padding: 5px;
@@ -41,10 +42,19 @@
 .clearfix { zoom: 1; }
 
 
+
 .box-col1 {
+  width: 15%;
   display: inline-block;
-  max-width: 80px;
+  vertical-align: top;
+  border: 1px solid black;
 }
+
+.box-col1 li {
+  list-style: none;
+}
+
+
 
 
 
