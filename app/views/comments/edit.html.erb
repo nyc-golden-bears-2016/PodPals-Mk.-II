@@ -1,5 +1,7 @@
-<%= form_for @comment do |f| %>
-  <%= f.label :content %>
-  <%= f.text_area :content, size: "60x12" %>
-  <%= f.submit "Update Comment" %>
+<% if @comment.user == current_user %>
+  <%= form_for @comment do |f| %>
+    <%= f.label :content %>
+    <%= f.text_area :content, size: "60x12" %>
+    <%= f.submit "Update Comment" %>
+  <% end %>
 <% end %>

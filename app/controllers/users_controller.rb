@@ -18,6 +18,16 @@ class UsersController < ApplicationController
     @category_hash = @category_ids.to_h
     @suggestions = (@favoriteGenres.map {|genre| JSON.parse(HTTParty.get("https://itunes.apple.com/search?term=podcast&genreId=#{@category_hash[genre]}"))}).shuffle
     @like = Like.new
+    # byebug
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      redirect_to(@user)
+    else
+      redirect_to request.referer
+    end
   end
 
   private
@@ -42,6 +52,10 @@ class UsersController < ApplicationController
       @favoriteGenres.map do |genre|
         results = HTTParty.get("https://itunes.apple.com/search?term=podcast&genreId#{genre}&limit=5")
       end
+    end
+
+    def user_params
+      params.require(:user).permit(:avatar)
     end
 end
 

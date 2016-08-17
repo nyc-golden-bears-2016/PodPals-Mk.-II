@@ -1,9 +1,9 @@
-<% if @user.inverse_pending_friends %>
-	<% @user.inverse_pending_friends.each do |u| %>
+<% if user.inverse_pending_friends %>
+	<% user.inverse_pending_friends.each do |u| %>
 		<% unless u.friend_id == u.user_id %>
 			<%= link_to u.user.username, user_path(u.user_id) %>
 			Since inv pend <%= u.created_at.to_s(:long) %>
-		<% if (u.user_id != current_user.id) && (@user == current_user) %>
+		<% if (u.user_id != current_user.id) && (user == current_user) %>
 			<%= link_to '[Accept]', user_friend_path(:user_id => current_user, :id => u.id), :method => :put, :confirm => 'Accept friend request! Are you sure?' %> |
 			<%= link_to '[Reject]', user_friend_path(:user_id => current_user, :id => u.id), :method => :delete, :confirm => 'Reject friend request! Are you sure?' %><br>
 			<% end %>
@@ -11,8 +11,8 @@
 	<% end %>
 <% end %>
 
-<% if @user.pending_friends %>
-	<% @user.pending_friends.each do |u| %>
+<% if user.pending_friends %>
+	<% user.pending_friends.each do |u| %>
 		<% unless u.user_id == u.friend_id %>
 			<%= link_to u.friend.username, user_path(u.friend_id) %>
 			Since <%= u.created_at.to_s(:long) %><br>

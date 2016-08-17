@@ -51,7 +51,7 @@ class DiscussionsController < ApplicationController
   private
 
   def discussion_params
-    params.require(:discussion).permit(:title, :content)
+    params.require(:discussion).permit(:title, :content, :podcast_id)
   end
 end
 
