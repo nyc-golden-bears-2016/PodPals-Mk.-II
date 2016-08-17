@@ -22,6 +22,7 @@
         </ul>
       </div>
     </nav>
+    <% if user_signed_in? %>
       <ul id="slide-out" class="side-nav">
     <li><div class="userView">
       <!-- <img class="background" src="images/office.jpg"> -->
@@ -46,9 +47,9 @@
           <li><a class="subheader">Pending Requests</a></li>
           <%= render :partial => 'friends/pending_friends', locals: {user: current_user} %><br>
           <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-        <% end %>
       </ul>
   </div>
+        <% end %>
   <body>
     <div class="body-container">
     <%= yield %>

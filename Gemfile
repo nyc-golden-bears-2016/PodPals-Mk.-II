@@ -28,14 +28,10 @@ gem 'devise'
 gem 'pry-rails'
 gem 'itunes'
 gem 'httparty'
-<<<<<<< HEAD
 gem 'bootstrap-sass', '~> 3.2.0'
-=======
-gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 
->>>>>>> master
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
