@@ -31,7 +31,7 @@ gem 'httparty'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
-
+gem 'masonry-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

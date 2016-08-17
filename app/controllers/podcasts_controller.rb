@@ -67,6 +67,19 @@ class PodcastsController < ApplicationController
 		render :genres_top
 	end
 
+	def share
+		byebug
+		@podcast = Podcast.find(params[:id])
+		@user = User.find(params[:friend])
+		if @podcast
+			# share successful flash
+			PodcastMailer.share_podcast(@user, @podcast)
+		else
+			# unsuccessful share flash 
+			redirect_to(@podcast)
+		end
+	end
+
 	private
 
 	def podcast_params
