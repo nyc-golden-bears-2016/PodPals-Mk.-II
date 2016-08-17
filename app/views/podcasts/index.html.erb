@@ -4,7 +4,7 @@
   <li><%= podcast.collectionName %><br>
   Hosts: <%= podcast.artistName %><br>
   Tags: <% podcast.genres.each do |tag| %><% unless tag == "Podcasts" %><span class="tag"><%= tag %> </span><%end%><%end%><br>
-  Listen to it here: <a href=<%= podcast.collectionViewUrl %>><%= podcast.collectionViewUrl %></a><br><br>
+  <a href=<%= podcast.collectionViewUrl %>>Listen Here</a><br><br>
   <% if user_signed_in? %>
   <%= form_for(@podcast) do |f| %>
     <%= f.hidden_field(:title, :value => podcast.collectionName) %>
