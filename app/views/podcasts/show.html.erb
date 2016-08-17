@@ -16,4 +16,18 @@
     <%= f.hidden_field(:podcast_id, value: @podcast.id)%>
     <%= f.submit "Create Discussion" %>
   <% end %>
+
+  <form action="/podcasts/<%= @podcast.id %>/shares" method="post">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <select>
+      <option value="" disabled selected>Choose a friend</option>
+      <% current_user.friends.each do |friend| %>
+        <option><%= friend.username %><input type="hidden" name="share[recipient_id]" value="<%= friend.id %>"></option>
+      <% end %>
+      <% current_user.inverse_friends.each do |friend| %>
+        <option><%= friend.username %><input type="hidden" name="share[recipient_id]" value="<%= friend.id %>"></option>
+      <% end %>
+    </select>
+    <input type="submit" value="Share Podcast">
+  </form>
 <% end %>

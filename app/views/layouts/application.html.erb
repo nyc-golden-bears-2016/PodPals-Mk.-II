@@ -22,10 +22,12 @@
         </ul>
       </div>
     </nav>
+    <% if user_signed_in? %>
       <ul id="slide-out" class="side-nav">
     <li><div class="userView">
       <!-- <img class="background" src="images/office.jpg"> -->
       <!-- <a href="#!user"><img class="circle" src="images/yuna.jpg"></a> -->
+      <%= image_tag current_user.avatar.url(:thumb) %>
       <a href="#!name"><span class="white-text name"><%= current_user.username %></span></a>
       <a href="#!email"><span class="white-text email"><%= current_user.email %></span></a>
     </div></li>
@@ -44,11 +46,18 @@
           <% end %>
           <li><div class="divider"></div></li>
           <li><a class="subheader">Pending Requests</a></li>
-          <%= render :partial => 'friends/pending_friends', locals: {user: current_user} %><br>
+            <%= render :partial => 'friends/pending_friends', locals: {user: current_user} %><br>
+          <li><div class="divider"></div></li>
+          <li><a class="subheader">Shares Feed</a></li>
+            <% current_user.recieved_shares.order('updated_at DESC').limit(5).each do |share| %>
+              <%= link_to share.podcast.title, share.podcast %><br>
+              Shared By: <%= share.sender.username %> on <%= share.created_at.to_s(:long) %><br>
+            <% end %>
+            <li><div class="divider"></div></li>
           <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-        <% end %>
       </ul>
   </div>
+  <% end %>
   <body>
     <div class="body-container">
     <%= yield %>
