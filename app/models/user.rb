@@ -14,6 +14,14 @@ class User < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :discussions, dependent: :destroy
+  has_attached_file :avatar, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+  }
+
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
 
   def accepted_inverse_friends
     self.inverse_friendships.where(pending: false)
