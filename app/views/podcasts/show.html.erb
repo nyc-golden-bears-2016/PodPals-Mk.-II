@@ -1,42 +1,47 @@
-<div class="show-container">
-    <div class="show-title">
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
       <h1><%= @podcast.title %></h1>
       <% if @podcast.discussions %>
         <h2><%= @podcast.title %>'s Discussions</h2>
     </div>
-      <div class="sidebar">
+      <div class="panel-body">
         <div class="podcast-image">
           <img src="<%= @podcast.image100 %>">
         </div>
-      </div>
-    <% @podcast.discussions.each do |discussion| %>
-      <div class="sidebar">
+      <div class="active-discussions">
         <h4>Active Discussions:</h4>
-        <li>
-        <%= link_to discussion.title, discussion %>
-        </li>
+          <% @podcast.discussions.each do |discussion| %>
+              <li>
+              <%= link_to discussion.title, discussion %>
+              </li>
+          <% end %>
       </div>
-    <% end %>
   <% end %>
-  <div class="discussion-container">
     <% if user_signed_in? %>
-      <%= form_for([@podcast, @discussion]) do |f| %>
-        <div class="main-box">
-          <div class="title">
-              <%= f.text_field :title, placeholder: "Title:" %>
-            </div>
-              <div class="discussion-box">
-                <%= f.text_area :content, placeholder: "Body:", size: "60x12" %>
-                <%= f.hidden_field(:podcast_id, value: @podcast.id)%>
+        <div class="form discussion-form">
+          <div class="form-group">
+            <%= form_for([@podcast, @discussion]) do |f| %>
+              <div class="field name col-xs-12">
+                <%= f.label :title %><br/>
+                <%= f.text_field :title, class: 'form-control' %>
+              </div>
+                <div class="field name col-xs-12">
+                  <%= f.label :body %><br/>
+                  <%= f.text_area :content, size: "60x12", class: 'form-control' %>
+                  <%= f.hidden_field(:podcast_id, value: @podcast.id)%>
+              </div>
             </div>
             <div class="discussion-button">
-              <%= f.submit "Create Discussion" %>
+              <%= f.submit "Create Discussion", class: 'btn btn-sm btn-primary' %>
             </div>
           </div>
-      <div class="sidebar">
         <div class="share">
           <%= render :partial => 'podcasts/share' %>
         </div>
-      </div>
       <% end %>
+    <% end %>
   </div>
+  </div>
+</div>
+

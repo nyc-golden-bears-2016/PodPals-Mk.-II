@@ -8,12 +8,11 @@
       <%= f.email_field :email, autofocus: true, placeholder: "Email address" %>
       <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
       <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password confirmation" %>
-    <form>
+
       <div class="fileUpload avatar btn btn-primary field">
         <span>Upload Avatar</span>
-        <input type="file" name="user[avatar]" id="uploadBtn" class="upload">
+        <%= f.file_field :avatar, class: "upload", id: "uploadBtn"%>
       </div>
-    </form>
 
     <div class="actions">
       <%= f.submit "Sign up", class: "btn btn-primary" %>
