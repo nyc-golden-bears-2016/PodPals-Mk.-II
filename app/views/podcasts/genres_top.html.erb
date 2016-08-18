@@ -1,16 +1,16 @@
 <div class="top-genres-container">
-  <h2>Top Podcasts</h2>
+<h2 class="top-genre-header">Top Podcasts</h2>
   <% @parsed_results["feed"]["entry"].each do |results| %>
-  <div class="panel panel-default top-podcasts">
-    <div class="top-podcast-image">
-    <a href="<%= results["link"]["attributes"]["href"]%>"><img src="<%= results["im:image"][2]["label"] %>"/></a>
+  <div class="panel top-podcasts row">
+    <div class="top-podcast-image col-xs-6">
+      <a href="<%= results["link"]["attributes"]["href"]%>"><img src="<%= results["im:image"][2]["label"] %>"/></a>
+    </div>
+    <div class="top-podcast-info col-xs-6">
+      <p class="info-header">Title:</p> <%= results["im:name"]["label"] %>
+      <br>
+      <br>
+      <p class="info-header">Artist:</p> <%= results["im:artist"]["label"] %>
+    </div>
   </div>
-  <div class="top-podcast-info">
-    <p>Title: <%= results["im:name"]["label"] %></p>
-    <p>Artist: <%= results["im:artist"]["label"] %></p>
-    <p>Summary: <%= results["summary"]["label"] %></p>
-  </div>
-  </div>
-    <br>
   <% end %>
 </div>
