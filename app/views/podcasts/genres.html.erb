@@ -3,11 +3,9 @@
 
 <div class="categories-container">
   <% category_ids.each do |category| %>
-  <div class='category'>
-    <form method="get" action="/podcasts/genres/<%= category[0]%>">
+    <form class="category" method="get" action="/podcasts/genres/<%= category[0]%>">
       <input type="hidden" name="genre_id" value="<%= category[1] %>">
-      <input type="submit" value="<%= category[0] %>">
+      <input class="button" type="submit" value="<%= category[0] %>">
     </form>
-  </div>
   <% end %>
 </div>
