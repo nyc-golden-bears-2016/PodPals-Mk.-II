@@ -1,3 +1,5 @@
-<% @discussions.each do |discussion| %>
-<%= link_to discussion, discussion.title %>
-<% end %>
+<div class="discussion-list-container">
+  <% @discussions.each do |discussion| %>
+    <%= link_to discussion, discussion.title %>
+  <% end %>
+</div>
