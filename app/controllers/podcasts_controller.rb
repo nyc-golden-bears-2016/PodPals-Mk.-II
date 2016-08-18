@@ -24,14 +24,14 @@ class PodcastsController < ApplicationController
 	def create
 		@podcast = Podcast.find_or_initialize_by(podcast_params)
 		results = ITUNES_CLIENT.podcast("#{podcast_params[:title]} #{podcast_params[:artist]}")
-		existing_podcast = Podcast.find_by(title: @podcast.title)
 		if !results.resultCount
 			redirect_to request.referer,
 			alert: "no podcasts found"
 		else
 			if @podcast.save && params['commit'] ==  'Add to queue!'
 				@userPod = PodcastUser.find_or_initialize_by(user_id: current_user.id, podcast_id: @podcast.id, in_queue: true)
-				if @userPod.save
+				if @userPod.id == nil
+					@userPod.save
 					redirect_to request.referer,
 					alert: "successfully added to queue!"
 				else
@@ -39,14 +39,13 @@ class PodcastsController < ApplicationController
 				end
 			elsif @podcast.save && params['commit'] ==  'Add to favorites!'
 				@userPod = PodcastUser.find_or_initialize_by(user_id: current_user.id, podcast_id: @podcast.id, favorite: true)
-				if @userPod.save
+				if @userPod.id == nil
+					@userPod.save
 					redirect_to request.referer,
 					alert: "successfully added to favorites!"
 				else
 					flash.now[:alert] = "You already favorited this podcast!"
 				end
-			elsif existing_podcast && params['commit'] == 'View active discussions'
-				redirect_to podcast_path(existing_podcast)
 			elsif @podcast.save && params['commit'] == 'View active discussions'
 				redirect_to(@podcast)
 			else
