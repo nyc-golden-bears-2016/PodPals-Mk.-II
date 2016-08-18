@@ -1,0 +1,30 @@
+.categories-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+
+.category {
+
+  height: 130px;
+  width: 130px;
+  margin: 0px;
+}
+
+.category input[type="submit"] {
+
+  height: 125px;
+  width: 125px;
+  white-space: normal;
+  background: transparent;
+  font-family: "Lobster";
+  font-size: 16px;
+  color: cornflowerblue;
+  background-color: #e0e0eb;
+}
+
+.category input[type="submit"]:hover {
+  background-color: #222;
+}
