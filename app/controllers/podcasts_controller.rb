@@ -22,7 +22,7 @@ class PodcastsController < ApplicationController
 	end
 
 	def create
-		@podcast = Podcast.new(podcast_params)
+		@podcast = Podcast.find_or_initialize_by(podcast_params)
 		results = ITUNES_CLIENT.podcast("#{podcast_params[:title]} #{podcast_params[:artist]}")
 		existing_podcast = Podcast.find_by(title: @podcast.title)
 		if !results.resultCount
@@ -30,13 +30,21 @@ class PodcastsController < ApplicationController
 			alert: "no podcasts found"
 		else
 			if @podcast.save && params['commit'] ==  'Add to queue!'
-				PodcastUser.create(user_id: current_user.id, podcast_id: @podcast.id, in_queue: true)
-				redirect_to request.referer,
-				alert: "successfully added to queue!"
+				@userPod = PodcastUser.find_or_initialize_by(user_id: current_user.id, podcast_id: @podcast.id, in_queue: true)
+				if @userPod.save
+					redirect_to request.referer,
+					alert: "successfully added to queue!"
+				else
+					flash.now[:alert] = "Already on your queue list!"
+				end
 			elsif @podcast.save && params['commit'] ==  'Add to favorites!'
-				PodcastUser.create(user_id: current_user.id, podcast_id: @podcast.id, favorite: true)
-				redirect_to request.referer,
-				alert: "successfully added to favorites!"
+				@userPod = PodcastUser.find_or_initialize_by(user_id: current_user.id, podcast_id: @podcast.id, favorite: true)
+				if @userPod.save
+					redirect_to request.referer,
+					alert: "successfully added to favorites!"
+				else
+					flash.now[:alert] = "You already favorited this podcast!"
+				end
 			elsif existing_podcast && params['commit'] == 'View active discussions'
 				redirect_to podcast_path(existing_podcast)
 			elsif @podcast.save && params['commit'] == 'View active discussions'
