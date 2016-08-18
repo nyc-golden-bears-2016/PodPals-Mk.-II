@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   def index
-    @searched_users = User.where(username: params[:search])
+    @searched_users = User.where("username LIKE '%#{params[:search]}%'")
+
     @users = User.all
+    # byebug
   end
 
 	def show

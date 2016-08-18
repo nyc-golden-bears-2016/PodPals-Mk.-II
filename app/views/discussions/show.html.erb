@@ -2,7 +2,7 @@
   <h1><%= @discussion.title %></h1>
   <p><%= @discussion.content %></p>
 
-  <div class="discussion-likes">
+  <div class="like-button">
     <%= form_for(@like) do |f| %>
       <%= f.hidden_field(:user_id, :value => current_user.id) %>
       <%= f.hidden_field(:likeable_id, :value => @discussion.id) %>
@@ -25,12 +25,14 @@
           <p><%= link_to "Edit Comment", edit_comment_path(comment)%></p>
           <%= button_to "Delete Comment", comment, method: :delete %>
       <% if user_signed_in? %>
+      <div class="like-button">
         <%= form_for(@like) do |f| %>
           <%= f.hidden_field(:user_id, :value => current_user.id) %>
           <%= f.hidden_field(:likeable_id, :value => comment.id) %>
           <%= f.hidden_field(:likeable_type, :value => comment.class.name) %>
           <%= f.submit "LIKE" %>
         <% end %>
+      </div>
       <% end %>
      <% end %>
     <% end %>
