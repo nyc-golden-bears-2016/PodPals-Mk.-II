@@ -6,7 +6,7 @@
     <% end %>
     <% current_user.inverse_friends.each do |friend| %>
         <option value="<%= friend.id %>"><%= friend.username %></option>
-    <% end %>      
+    <% end %>
   </select>
-  <input type="submit" value="Share Podcast">
+  <input type="submit" class="btn btn-sm btn-primary" value="Share Podcast">
 </form>

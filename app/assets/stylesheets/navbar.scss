@@ -3,13 +3,19 @@
 }
 
 .navbar-inverse .navbar-nav > li:hover {
-  background-color: #428bca;
-  color: #e0e0eb;
+  background-color: #009fb7;
+  color: #eff1f3;
   transition: .10s;
-  text-shadow: 1px 1px 10px;
 }
+
+.navbar-inverse .navbar-nav > li > a:hover{
+  color: #eff1f3;
+  text-shadow: 1px 1px 50px;
+}
+
 .navbar-inverse .navbar-nav > li > a {
-  color: #428bca;
+  color: #696773;
+  background-color: #272727;
   padding: 15px;
   font-family: 'Roboto Slab';
 }
