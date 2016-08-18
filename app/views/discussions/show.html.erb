@@ -1,48 +1,48 @@
-<h1><%= @discussion.title %></h1>
-<p><%= @discussion.content %></p>
+<div class="discussion-show-container">
+  <h1><%= @discussion.title %></h1>
+  <p><%= @discussion.content %></p>
 
-<div class="discussion-likes">
-  <%= form_for(@like) do |f| %>
-    <%= f.hidden_field(:user_id, :value => current_user.id) %>
-    <%= f.hidden_field(:likeable_id, :value => @discussion.id) %>
-    <%= f.hidden_field(:likeable_type, :value => @discussion.class.name) %>
-    <%= f.submit "LIKE" %>
+  <div class="discussion-likes">
+    <%= form_for(@like) do |f| %>
+      <%= f.hidden_field(:user_id, :value => current_user.id) %>
+      <%= f.hidden_field(:likeable_id, :value => @discussion.id) %>
+      <%= f.hidden_field(:likeable_type, :value => @discussion.class.name) %>
+      <%= f.submit "LIKE" %>
+    <% end %>
+  </div>
+
+  <% if @discussion.user == current_user %>
+    <p><%= link_to "Edit Discussion", edit_discussion_path(@discussion)%></p>
+    <p><%= button_to 'Delete Discussion', @discussion, method: :delete%></p>
   <% end %>
-</div>
 
-<% if @discussion.user == current_user %>
-  <p><%= link_to "Edit Discussion", edit_discussion_path(@discussion)%></p>
-  <p><%= button_to 'Delete Discussion', @discussion, method: :delete%></p>
-<% end %>
+  <h3>Comments</h3>
+  <% if @discussion.comments %>
+    <% @discussion.comments.each do |comment| %>
+      <%= comment.content %>
+      <%= comment.user.email %>
+        <% if comment.user == current_user %>
+          <p><%= link_to "Edit Comment", edit_comment_path(comment)%></p>
+          <%= button_to "Delete Comment", comment, method: :delete %>
+      <% if user_signed_in? %>
+        <%= form_for(@like) do |f| %>
+          <%= f.hidden_field(:user_id, :value => current_user.id) %>
+          <%= f.hidden_field(:likeable_id, :value => comment.id) %>
+          <%= f.hidden_field(:likeable_type, :value => comment.class.name) %>
+          <%= f.submit "LIKE" %>
+        <% end %>
+      <% end %>
+     <% end %>
+    <% end %>
+  <% end %>
 
-<h3>Comments</h3>
-<% if @discussion.comments %>
-  <% @discussion.comments.each do |comment| %>
-    <%= comment.content %>
-    <%= comment.user.email %>
-      <% if comment.user == current_user %>
-        <p><%= link_to "Edit Comment", edit_comment_path(comment)%></p>
-        <%= button_to "Delete Comment", comment, method: :delete %>
+  <% if @discussion %>
     <% if user_signed_in? %>
-      <%= form_for(@like) do |f| %>
-        <%= f.hidden_field(:user_id, :value => current_user.id) %>
-        <%= f.hidden_field(:likeable_id, :value => comment.id) %>
-        <%= f.hidden_field(:likeable_type, :value => comment.class.name) %>
-        <%= f.submit "LIKE" %>
+      <%= form_for([@discussion, @comment]) do |f| %>
+        <% f.hidden_field(:user_id) %>
+        <%= f.text_area :content, size: "60x12" %>
+        <%= f.submit "Add Comment" %>
       <% end %>
     <% end %>
-   <% end %>
   <% end %>
-<% end %>
-
-<% if @discussion %>
-  <% if user_signed_in? %>
-    <%= form_for([@discussion, @comment]) do |f| %>
-      <% f.hidden_field(:user_id) %>
-      <%= f.text_area :content, size: "60x12" %>
-      <%= f.submit "Add Comment" %>
-    <% end %>
-  <% end %>
-<% end %>
-
-
+</div>
