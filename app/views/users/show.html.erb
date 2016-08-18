@@ -7,7 +7,7 @@
 <% end %>
 <% end %>
 
-<h3><%= @user.username %><h3>
+<h3><%= @user.username %></h3>
 <% if user_signed_in? %>
 	<% unless @user == current_user || current_user.friends.include?(@user) || current_user.pending_friends.include?(@user) || current_user.inverse_friends.include?(@user) || current_user.inverse_pending_friends.include?(@user) %>
 		<%= form_for(:friendships, :url => user_friends_path(:user_id => current_user.id, :friend_id => @user.id)) do |f| %>
@@ -15,7 +15,21 @@
 		<% end %>
 	<% end %>
 <% end %>
-<h3>In Queue</h3>
+<div id="userTabs" class="container">
+<ul class="nav nav-pills">
+	<li class="active">
+		<a href="#queueContent" data-toggle="tab"><h3>In Queue</h3></a>
+	</li>
+<li><a href="#favoritesContent" data-toggle="tab">
+<h3>Favorites</h3></a></li>
+
+<li><a href="#recommendationContent" data-toggle="tab">
+<h3>Recommendations</h3></a></li>
+</ul>
+
+
+<div class="tab-content clearfix">
+	<div class="tab-pane active" id="queueContent">
 	<% @sorted_queue_genres.each do |genre_group| %>
 		<h3><%= genre_group.first.genre %></h3><br>
 			<% genre_group.each do |podcast| %>
@@ -23,19 +37,23 @@
 			<li><%= link_to podcast.title, podcast%><br>
 					<%= podcast.artist %></li><br>
 					<% if user_signed_in? && (@user.friends.include?(current_user) || @user.inverse_friends.include?(current_user)) %>
+				<div class="like-button">
 					<%= form_for(@like) do |f| %>
 					  <%= f.hidden_field(:user_id, :value => current_user.id) %>
 					  <%= f.hidden_field(:likeable_id, :value => podcast.id) %>
 					  <%= f.hidden_field(:likeable_type, :value => podcast.class.name) %>
 					  <%= f.submit "LIKE" %>
 					<% end %>
+				</div>
 					<% end %>
 					<% if @user == current_user %>
 					<%= link_to "Remove from queue", "/podcastusers/#{PodcastUser.find_by(user_id: @user.id, podcast_id: podcast.id).id}", :method => 'delete' %>
 					<% end %>
 			<% end %>
 	<% end %>
-<h3>Favorites</h3>
+</div>
+
+<div class="tab-pane" id="favoritesContent">
 	<% @sorted_favorite_genres.each do |genre_group| %>
 	<h3><%= genre_group.first.genre %></h3><br>
 			<% genre_group.each do |podcast| %>
@@ -44,19 +62,23 @@
 					<%= podcast.artist %></li>
 					<%= podcast.likes.count %>
 					<% if user_signed_in? && (@user.friends.include?(current_user) || @user.inverse_friends.include?(current_user)) %>
+				<div class="like-button">
 					<%= form_for(@like) do |f| %>
 					  <%= f.hidden_field(:user_id, :value => current_user.id) %>
 					  <%= f.hidden_field(:likeable_id, :value => podcast.id) %>
 					  <%= f.hidden_field(:likeable_type, :value => podcast.class.name) %>
 					  <%= f.submit "LIKE"%>
 					<% end %>
+				</div>
 					<% end %>
 					<% if @user == current_user %>
 					<%= link_to "Remove from favorites", "/podcastusers/#{PodcastUser.find_by(user_id: @user.id, podcast_id: podcast.id).id}", :method => 'delete' %>
 					<% end %>
 			<% end %>
 	<% end %>
-<h3>Recommendations</h3>
+</div>
+
+<div class="tab-pane" id="recommendationContent">
 <% @suggestions.each do |recommendation| %>
 	<% recommendation["results"].each do |results| %>
 <br>
@@ -86,4 +108,4 @@
 		<% end %>
 	<% end %>
 <% end %>
-
+</div>

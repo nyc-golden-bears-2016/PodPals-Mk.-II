@@ -1,7 +1,15 @@
 class LikesController < ApplicationController
   def create
-    Like.create(like_params)
-    redirect_to request.referer
+    @like = Like.new(like_params)
+    if @like.save
+    	if request.xhr?
+    		render '_likes', layout: false, locals: {}
+    	else
+    		redirect_to request.referer
+    	end
+    else
+    	redirect_to request.referer
+    end
   end
 
   private
