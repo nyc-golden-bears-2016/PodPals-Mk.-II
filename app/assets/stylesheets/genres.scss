@@ -2,29 +2,39 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-
+  width: 800px;
+  margin: auto;
+  margin-top: 80px;
+  position: relative;
 }
 
 
 .category {
 
-  height: 130px;
-  width: 130px;
+  height: 150px;
+  width: 150px;
   margin: 0px;
 }
 
 .category input[type="submit"] {
 
-  height: 125px;
-  width: 125px;
+  height: 130px;
+  width: 130px;
   white-space: normal;
   background: transparent;
-  font-family: "Lobster";
-  font-size: 16px;
-  color: cornflowerblue;
+  font-family: 'Roboto Slab';
+  font-style: bold;
+  text-shadow: 1px 1px 5px;
+  font-size: 14px;
+  color: #428bca;
   background-color: #e0e0eb;
+  box-shadow: 1px 1px 4px;
 }
 
 .category input[type="submit"]:hover {
-  background-color: #222;
+  background-color: #428bca;
+  color: #e0e0eb;
+  transition: transform .25s;
+  z-index: 2;
+  transform: scale(1.10);
 }
