@@ -36,7 +36,8 @@
 			<img src="<%= podcast.image100 %>">
 			<li><%= link_to podcast.title, podcast%><br>
 					<%= podcast.artist %></li><br>
-					<% if user_signed_in? && (@user.friends.include?(current_user) || @user.inverse_friends.include?(current_user)) %>
+					<div class="likes-count"><%= podcast.likes.count %></div>
+			<% if user_signed_in? && (@user.friends.include?(current_user) || @user.inverse_friends.include?(current_user)) && (current_user != @user) %>
 				<div class="like-button">
 					<%= form_for(@like) do |f| %>
 					  <%= f.hidden_field(:user_id, :value => current_user.id) %>
@@ -60,8 +61,8 @@
 			<img src="<%= podcast.image100 %>">
 			<li><%= link_to podcast.title, podcast%><br>
 					<%= podcast.artist %></li>
-					<%= podcast.likes.count %>
-					<% if user_signed_in? && (@user.friends.include?(current_user) || @user.inverse_friends.include?(current_user)) %>
+					<div class="likes-count"><%= podcast.likes.count %></div>
+			<% if user_signed_in? && (@user.friends.include?(current_user) || @user.inverse_friends.include?(current_user)) && (current_user != @user) %>
 				<div class="like-button">
 					<%= form_for(@like) do |f| %>
 					  <%= f.hidden_field(:user_id, :value => current_user.id) %>
@@ -69,6 +70,7 @@
 					  <%= f.hidden_field(:likeable_type, :value => podcast.class.name) %>
 					  <%= f.submit "LIKE"%>
 					<% end %>
+	
 				</div>
 					<% end %>
 					<% if @user == current_user %>

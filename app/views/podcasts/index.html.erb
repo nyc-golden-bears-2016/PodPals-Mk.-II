@@ -45,7 +45,7 @@
       <div class="podcast-content">
             <li><%= podcast.collectionName %></li><br>
             Hosts: <%= podcast.artistName %><br>
-            Tags: <% podcast.genres.each do |tag| %><% unless tag == "Podcasts" %><span class="tag"><%= tag %> </span><%end%><%end%><br>
+            Tags: <% podcast.genres.each do |tag| %><% unless tag == "Podcasts" %><h4><span class="label label-primary"><%= tag %> </span></h4><%end%><%end%><br>
             <a href=<%= podcast.collectionViewUrl %>>Listen Here</a><br><br>
       </div>
       </div>
