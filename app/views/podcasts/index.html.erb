@@ -15,7 +15,7 @@
               <% fields_for @userPods do |u| %>
               <%= u.hidden_field(:in_queue, :value => true) %>
         <% end %>
-          <%= f.submit "Add to queue!" %>
+          <%= f.submit "Add to queue!", class: 'btn btn-sm btn-primary' %>
       <% end %>
         <%= form_for(@podcast) do |f| %>
           <%= f.hidden_field(:title, :value => podcast.collectionName) %>
@@ -27,7 +27,7 @@
           <% fields_for @userPods do |u| %>
           <%= u.hidden_field(:favorite, :value => true) %>
           <% end %>
-          <%= f.submit "Add to favorites!" %>
+          <%= f.submit "Add to favorites!", class: 'btn btn-sm btn-primary' %>
           <% end %>
         <% end %>
         <%= form_for(@podcast) do |f| %>
@@ -37,7 +37,7 @@
           <%= f.hidden_field(:image30, :value => podcast.artworkUrl30) %>
           <%= f.hidden_field(:image60, :value => podcast.artworkUrl60) %>
           <%= f.hidden_field(:image100, :value => podcast.artworkUrl100) %>
-        <%= f.submit "View active discussions" %>
+        <%= f.submit "View active discussions", class: 'btn btn-sm btn-primary' %>
         <% end %>
         </div>
         </li>
