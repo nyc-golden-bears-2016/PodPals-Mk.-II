@@ -3,7 +3,9 @@
     <% @podcasts.results.each do |podcast| %>
     <div class="wrapper">
         <div class="images-buttons">
-          <img src="<%= podcast.artworkUrl100 %>">
+          <div class="podcast-pic">
+            <img src="<%= podcast.artworkUrl100 %>">
+          </div>
         <% if user_signed_in? %>
           <%= form_for(@podcast) do |f| %>
             <%= f.hidden_field(:title, :value => podcast.collectionName) %>
