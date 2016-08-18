@@ -24,16 +24,16 @@
   background: transparent;
   font-family: 'Roboto Slab';
   font-style: bold;
-  text-shadow: 1px 1px 5px;
   font-size: 14px;
-  color: #428bca;
-  background-color: #e0e0eb;
-  box-shadow: 1px 1px 4px;
+  color: #eff1f3;
+  background-color: #696773;
+  box-shadow: 1px 1px 10px;
 }
 
 .category input[type="submit"]:hover {
-  background-color: #428bca;
-  color: #e0e0eb;
+  background-color: #009fb7;
+  color: #fed766;
+  text-shadow: 1px 1px 50px;
   transition: transform .25s;
   z-index: 2;
   transform: scale(1.10);

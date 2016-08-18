@@ -1,47 +1,53 @@
-.show-container {
+.container {
   margin-top: 70px;
 }
 
-.discussion-container {
- /* border: 1px solid black;*/
-}
-
-.title {
-  margin-right: 348px;
-  margin-top: 20px;
-  /*border: 3px solid red;*/
-}
-
-.discussion-box {
-  margin-top: 25px;
-  /*border: 1px solid blue;*/
-}
-
-.discussion-button {
-  flex: auto;
-  border: 3px solid orange;
-}
-
-
-.sidebar {
-  border: 1px solid black;
-  position: absolute;
-}
-
-.main-box {
-  position: relative;
-  border: 1px solid red;
-}
 
 .podcast-image {
-  margin-top: 70px;
+/*  border: 1px solid black;*/
+  text-align: center;
+  width: 150px;
+  position: relative;
+  top: 70px;
+  left: 60px;
+}
+
+
+.share {
+/*  border: 1px solid black;*/
+  text-align: center;
+  width: 275px;
+  position: absolute;
+  top: 450px;
+}
+
+.panel{
+  width: 90%;
+  margin: auto;
 }
 
 .share {
   top: -500px;
+  }
+
+.active-discussions {
+/*  border: 1px solid red;*/
+  text-align: left;
+  width: 250px;
+  position: relative;
+  top: 175px;
+  left: 25px;
 }
 
+.active-discussions a {
+  font-size: 1.2em;
+  /*text-align: left;*/
+}
 
-
-
-
+.discussion-form {
+ /* border: 5px solid black;*/
+  width: 60%;
+  position: relative;
+  left: 35%;
+  top: -200px;
+}
