@@ -4,10 +4,14 @@
 
 .navbar-inverse .navbar-nav > li:hover {
   background-color: #428bca;
+  color: #e0e0eb;
+  transition: .10s;
+  text-shadow: 1px 1px 10px;
 }
 .navbar-inverse .navbar-nav > li > a {
   color: #428bca;
   padding: 15px;
+  font-family: 'Roboto Slab';
 }
 
 .notifications {
