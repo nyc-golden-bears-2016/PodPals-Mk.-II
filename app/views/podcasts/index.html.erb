@@ -1,12 +1,10 @@
-<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+<div class="container">
+
   <% if @podcasts %>
     <% @podcasts.results.each do |podcast| %>
-    <div class="box-col1">
-      <img src="<%= podcast.artworkUrl100 %>">
-      <li><%= podcast.collectionName %><br>
-      Hosts: <%= podcast.artistName %><br>
-      Tags: <% podcast.genres.each do |tag| %><% unless tag == "Podcasts" %><span class="tag"><%= tag %> </span><%end%><%end%><br>
-      <a href=<%= podcast.collectionViewUrl %>>Listen Here</a><br><br>
+    <div class="wrapper">
+        <div class="images-buttons">
+          <img src="<%= podcast.artworkUrl100 %>">
         <% if user_signed_in? %>
           <%= form_for(@podcast) do |f| %>
             <%= f.hidden_field(:title, :value => podcast.collectionName) %>
@@ -42,8 +40,16 @@
           <%= f.hidden_field(:image100, :value => podcast.artworkUrl100) %>
         <%= f.submit "View active discussions" %>
         <% end %>
+        </div>
         </li>
+      <div class="podcast-content">
+            <li><%= podcast.collectionName %></li><br>
+            Hosts: <%= podcast.artistName %><br>
+            Tags: <% podcast.genres.each do |tag| %><% unless tag == "Podcasts" %><span class="tag"><%= tag %> </span><%end%><%end%><br>
+            <a href=<%= podcast.collectionViewUrl %>>Listen Here</a><br><br>
+      </div>
       </div>
     <% end %>
+
   <% end %>
 </div>
