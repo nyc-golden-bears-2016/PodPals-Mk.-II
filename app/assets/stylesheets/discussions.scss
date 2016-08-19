@@ -1,3 +1,31 @@
-// Place all the styles related to the Discussions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.comment-input {
+  border: 1px solid black;
+  width: 60%;
+  position: relative;
+  margin-top: 100px;
+}
+
+.form.discussion-form {
+
+}
+.discussion-container {
+  width: 70%;
+  margin: auto;
+  margin-top: 70px;
+}
+
+.user-comment {
+  text-align: left;
+  position: relative;
+  left: 20px;
+}
+
+
+.user-handle {
+  position: relative;
+}
+
+
+#comment-section {
+  margin-bottom: 10px;
+}
