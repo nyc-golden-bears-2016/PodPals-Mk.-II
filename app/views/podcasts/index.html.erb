@@ -9,7 +9,7 @@
             <h3><%= podcast.collectionName %></h3><br>
             Hosts: <%= podcast.artistName %><br>
             Tags: <br><br><div class="genre-flex-box"><% podcast.genres.each do |tag| %><% unless tag == "Podcasts" %><span class="label label-primary" id="tags"><%= tag %> </span><%end%><%end%></div><br>
-            <a href=<%= podcast.collectionViewUrl %>>Listen Here</a><br><br>
+            <%= link_to "Listen Here", podcast.collectionViewUrl %><br><br>
         </div>
       </div>
       <div class="row">
