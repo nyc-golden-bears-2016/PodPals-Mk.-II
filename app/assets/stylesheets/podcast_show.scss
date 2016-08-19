@@ -60,3 +60,33 @@
 span.label.label-primary {
   margin-bottom: 10px;
 }
+
+
+
+.comment-content {
+  width: 50%;
+  display: inline-block;
+  font-size: 1.3em;
+  padding-top: 10%;
+  padding-right: 10%;
+
+}
+
+.user-handle {
+  width: 30%;
+  margin-top: 20px;
+}
+
+.comment-buttons {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+}
+
+#comment-section {
+  position: relative;
+}
+
+
+
+
