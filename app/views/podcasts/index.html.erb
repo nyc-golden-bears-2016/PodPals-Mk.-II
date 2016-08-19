@@ -8,7 +8,7 @@
         <div class="top-podcast-info col-xs-6">
             <h3><%= podcast.collectionName %></h3><br>
             Hosts: <%= podcast.artistName %><br>
-            Tags: <% podcast.genres.each do |tag| %><% unless tag == "Podcasts" %><h4><span class="label label-primary"><%= tag %> </span></h4><%end%><%end%><br>
+            Tags: <% podcast.genres.each do |tag| %><% unless tag == "Podcasts" %><h4><span class="label label-primary" id="tags"><%= tag %> </span></h4><%end%><%end%><br>
             <a href=<%= podcast.collectionViewUrl %>>Listen Here</a><br><br>
         </div>
       </div>
