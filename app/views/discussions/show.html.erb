@@ -4,32 +4,35 @@
       <h1><%= @discussion.title %></h1>
       <p><%= @discussion.content %></p>
         <% if @discussion.user == current_user %>
-          <p><%= link_to "Edit Discussion", edit_discussion_path(@discussion)%></p>
-          <p><%= button_to 'Delete Discussion', @discussion, method: :delete%></p>
+          <p><%= link_to "Edit Discussion", edit_discussion_path(@discussion), class: "btn btn-primary" %></p>
+          <p><%= button_to 'Delete Discussion', @discussion, method: :delete, class: "btn btn-primary" %></p>
         <% end %>
     </div>
 </div>
 <div class="panel-body">
   <% if @discussion.comments %>
     <% @discussion.comments.each do |comment| %>
-      <div class="panel panel-default" id="comment-section">
-        <div class="user-comment">
-          <img src="<%= comment.user.avatar.url(:square)%>" />
+      <div class="panel panel-default row" id="comment-section">
+        <div class="col-md-4">
+          <img src="<%= comment.user.avatar.url(:square)%>", style="display: inline-block" />
             <div class="user-handle">
-              <%= comment.user.username %>
+              <h4><%= comment.user.username %></h4>
             </div>
-        </div>
-
-      <%= comment.content %>
+            </div>
+      <div class="col-md-6">
+      <div class="comment-content">
+        <%= comment.content %>
+      </div>
+     </div>
+        <div class="comment-buttons">
         <% if comment.user == current_user %>
-          <p><%= link_to "Edit Comment", edit_comment_path(comment)%></p>
-          <%= button_to "Delete Comment", comment, method: :delete %>
-     <% end %>
+                  <p><%= link_to "Edit Comment", edit_comment_path(comment), class: "btn btn-primary" %></p>
+                  <%= button_to "Delete Comment", comment, method: :delete, class: "btn btn-primary"  %>
+             <% end %></div>
      </div>
     <% end %>
   <% end %>
 </div>
-
   <% if @discussion %>
     <% if user_signed_in? %>
     <div class="form discussion-form">

@@ -1,5 +1,5 @@
 <div class="discussion-edit-container">
-  <% if @comment.user == current_user %>
+  <% if @discussion.user == current_user %>
     <%= form_for @discussion do |f| %>
       <%= f.label :title %>
       <%= f.text_field :title %>

@@ -18,7 +18,7 @@ class FriendsController < ApplicationController
 	friend_params = {:user_id => @user.id, :friend_id => @friend.id, :pending => true}	
 	@friendship = Friendship.new(friend_params)
 		if @friendship.save && @user.id != @friend.id
-			redirect_to user_friends_path(current_user)
+			redirect_to request.referer
 		else
 			redirect_to user_path(current_user)
 		end
@@ -31,7 +31,7 @@ class FriendsController < ApplicationController
 			@friendship = Friendship.find_by_user_id_and_friend_id(@friend.user_id, @friend.friend_id)
 		if @friendship.update_attributes(friend_params)
 			flash[:notice] = 'Friend sucessfully accepted!'
-			redirect_to user_friends_path(current_user)
+			redirect_to request.referer
 		else
 			redirect_to user_path(current_user)
 		end
