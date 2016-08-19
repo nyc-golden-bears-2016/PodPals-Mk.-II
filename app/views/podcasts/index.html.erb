@@ -1,19 +1,19 @@
 <div class="top-genres-container">
   <% if @podcasts %>
     <% @podcasts.results.each do |podcast| %>
-    <div class="panel top-podcasts row">
+    <div class="panel top-podcasts row search-results">
       <div class="top-podcast-image col-xs-6 search" id="pod-img">
             <img src="<%= podcast.artworkUrl100 %>">
           </div>
         <div class="top-podcast-info col-xs-6">
             <h3><%= podcast.collectionName %></h3><br>
             Hosts: <%= podcast.artistName %><br>
-            Tags: <% podcast.genres.each do |tag| %><% unless tag == "Podcasts" %><h4><span class="label label-primary" id="tags"><%= tag %> </span></h4><%end%><%end%><br>
+            Tags: <br><br><div class="genre-flex-box"><% podcast.genres.each do |tag| %><% unless tag == "Podcasts" %><span class="label label-primary" id="tags"><%= tag %> </span><%end%><%end%></div><br>
             <a href=<%= podcast.collectionViewUrl %>>Listen Here</a><br><br>
         </div>
       </div>
-      <div class="row favorite-queue-discussion">
-        <div class="col-xs-6"><% if user_signed_in? %>
+      <div class="row">
+        <div class="col-xs-6 favorite-queue-discussion"><% if user_signed_in? %>
                 <div class="submit-button">
                   <%= form_for(@podcast) do |f| %>
                     <%= f.hidden_field(:title, :value => podcast.collectionName) %>

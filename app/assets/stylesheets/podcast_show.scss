@@ -45,3 +45,18 @@
   left: 35%;
   top: -110px;
 }
+
+.genre-flex-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 250px;
+}
+
+.panel.top-podcasts.row.search-results {
+  max-height: 500px;
+}
+
+span.label.label-primary {
+  margin-bottom: 10px;
+}
