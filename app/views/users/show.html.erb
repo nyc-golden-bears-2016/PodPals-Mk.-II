@@ -1,7 +1,7 @@
 <div class="profile-header">
 <%= image_tag @user.avatar.url(:square) %>
 
-<h1><%= @user.username %></h1>
+<h1 style="font-family:Lobster; color:#3abeff"><%= @user.username %></h1>
 </div>
 <% if user_signed_in? %>
 	<% unless @user == current_user || current_user.friends.include?(@user) || current_user.pending_friends.include?(@user) || current_user.inverse_friends.include?(@user) || current_user.inverse_pending_friends.include?(@user) %>
@@ -11,7 +11,7 @@
 	<% end %>
 <% end %>
 <div id="userTabs" class="container">
-<ul class="nav nav-pills">
+<ul class="nav nav-pills" id="all-tabs">
 	<li class="active">
 		<a href="#queueContent" data-toggle="tab"><h3>In Queue</h3></a>
 	</li>
@@ -33,8 +33,8 @@
 						<a href="/podcasts/<%= podcast.id %>"><img src="<%= podcast.image100 %>"></a>
 					</div>
 					<div class="top-podcast-info col-xs-8">
-			<li><%= link_to podcast.title, podcast%><br>
-					<%= podcast.artist %></li><br>
+			Title: <%= podcast.title %><br>
+			Artist:<%= podcast.artist %><br>
 					<% if @user == current_user %>
 					<%= link_to "Remove from queue", "/podcastusers/#{PodcastUser.find_by(user_id: @user.id, podcast_id: podcast.id).id}", :method => 'delete' %>
 					<% end %>
