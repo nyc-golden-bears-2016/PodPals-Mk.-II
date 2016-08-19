@@ -62,7 +62,7 @@
 
 .favorite-queue-discussion {
   position: relative;
-  bottom: 180px;
+  bottom: 150px;
   text-align: left;
   left: 85px;
 }
@@ -79,4 +79,8 @@
 
 #tags {
   display: inline;
+}
+
+div.panel.top-podcasts.row {
+  max-height: 200px;
 }
