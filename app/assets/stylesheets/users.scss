@@ -28,5 +28,8 @@ h1.title {
   width: 10%;
   margin: 10px;
   display: inline-block;
+  position: relative;
+  min-height: 76px;
+  vertical-align: top;
 }
 
