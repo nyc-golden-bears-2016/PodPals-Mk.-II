@@ -9,12 +9,16 @@
 
 <% if @searched_users %>
 	<% @searched_users.each do |user| %>
+  <div class="user-pals">
 		<%= image_tag user.avatar.url(:thumb) %>
 		<%= link_to user.username, user %>
+  </div>
 	<% end %>
 <% else %>
 	<% @users.each do |user| %>
+  <div class="user-pals">
 		<%= image_tag user.avatar.url(:thumb) %>
 		<%= link_to user.username, user %>
+  </div>
 	<% end %>
 <% end %>

@@ -17,5 +17,15 @@
   font-family: 'Roboto Slab';
 }
 
+h1.title {
+  color: #3abeff;
+}
 
-
+.user-pals {
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: white;
+  width: 10%;
+  margin: 10px;
+  display: inline-block;
+}
