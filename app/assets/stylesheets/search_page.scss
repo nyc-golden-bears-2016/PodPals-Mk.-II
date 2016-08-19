@@ -29,6 +29,7 @@
   margin-top: 70px;
   border: 3px solid black;
   display: flex;
+  background-color: #87CEFA;
 }
 
 .podcast-content {
@@ -38,11 +39,15 @@
   flex-direction: row;
   flex-grow: 1;
   justify-content: space-around;
+  background-color: #87CEFA;
 }
 
 .images-buttons {
+  font-family: 'Roboto Slab', serif;
+  margin-top: 40px;
   padding-right: 50px;
   flex-direction: row;
+  margin-bottom: 15px;
 }
 
 .podcast-content li {
@@ -50,4 +55,6 @@
 }
 
 
-
+.podcast-pic {
+  margin-bottom: 10px;
+}
