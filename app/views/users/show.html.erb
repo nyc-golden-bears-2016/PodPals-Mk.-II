@@ -1,13 +1,8 @@
+<div class="profile-header">
 <%= image_tag @user.avatar.url(:square) %>
-<% if @user == current_user %>
-<%= form_for(@user, html: { method: :put }) do |f| %>
-	<%= f.label :avatar %>
-    <%= f.file_field :avatar %>
-    <%= f.submit "Edit Profile Picture" %>
-<% end %>
-<% end %>
 
-<h3><%= @user.username %></h3>
+<h1 style="font-family:Lobster; color:#3abeff"><%= @user.username %></h1>
+</div>
 <% if user_signed_in? %>
 	<% unless @user == current_user || current_user.friends.include?(@user) || current_user.pending_friends.include?(@user) || current_user.inverse_friends.include?(@user) || current_user.inverse_pending_friends.include?(@user) %>
 		<%= form_for(:friendships, :url => user_friends_path(:user_id => current_user.id, :friend_id => @user.id)) do |f| %>
@@ -16,7 +11,7 @@
 	<% end %>
 <% end %>
 <div id="userTabs" class="container">
-<ul class="nav nav-pills">
+<ul class="nav nav-pills" id="all-tabs">
 	<li class="active">
 		<a href="#queueContent" data-toggle="tab"><h3>In Queue</h3></a>
 	</li>
@@ -31,28 +26,40 @@
 <div class="tab-content clearfix">
 	<div class="tab-pane active" id="queueContent">
 	<% @sorted_queue_genres.each do |genre_group| %>
-		<h3><%= genre_group.first.genre %></h3><br>
+		<h3 class="top-genre-header"><%= genre_group.first.genre %></h3><br>
 			<% genre_group.each do |podcast| %>
-			<img src="<%= podcast.image100 %>">
-			<li><%= link_to podcast.title, podcast%><br>
-					<%= podcast.artist %></li><br>
+				<div class="panel top-podcasts row">
+					<div class="top-podcast-image col-xs-4">
+						<a href="/podcasts/<%= podcast.id %>"><img src="<%= podcast.image100 %>"></a>
+					</div>
+					<div class="top-podcast-info col-xs-8">
+			Title: <%= podcast.title %><br>
+			Artist:<%= podcast.artist %><br>
 					<% if @user == current_user %>
 					<%= link_to "Remove from queue", "/podcastusers/#{PodcastUser.find_by(user_id: @user.id, podcast_id: podcast.id).id}", :method => 'delete' %>
 					<% end %>
+				</div>
+				</div>
 			<% end %>
 	<% end %>
 </div>
 
 <div class="tab-pane" id="favoritesContent">
 	<% @sorted_favorite_genres.each do |genre_group| %>
-	<h3><%= genre_group.first.genre %></h3><br>
+	<h3 class="top-genre-header"><%= genre_group.first.genre %></h3><br>
 			<% genre_group.each do |podcast| %>
-			<img src="<%= podcast.image100 %>">
-			<li><%= link_to podcast.title, podcast%><br>
-					<%= podcast.artist %></li>
-					<% if @user == current_user %>
-					<%= link_to "Remove from favorites", "/podcastusers/#{PodcastUser.find_by(user_id: @user.id, podcast_id: podcast.id).id}", :method => 'delete' %>
-					<% end %>
+				<div class="panel top-podcasts row">
+					<div class="top-podcast-image col-xs-4">
+						<a href="/podcasts/<%= podcast.id %>"><img src="<%= podcast.image100 %>"></a>
+					</div>
+					<div class="top-podcast-info col-xs-8">
+						Title: <%= podcast.title %><br>
+						Artist: <%= podcast.artist %><br>
+							<% if @user == current_user %>
+							<%= link_to "Remove from favorites", "/podcastusers/#{PodcastUser.find_by(user_id: @user.id, podcast_id: podcast.id).id}", :method => 'delete' %>
+							<% end %>
+					</div>
+				</div>
 			<% end %>
 	<% end %>
 </div>
@@ -60,9 +67,13 @@
 <div class="tab-pane" id="recommendationContent">
 <% @suggestions.each do |recommendation| %>
 	<% recommendation["results"].each do |results| %>
+		<div class="panel top-podcasts row">
+			<div class="top-podcast-image col-xs-4">
 <br>
 		<% unless @favoriteTitles.include?(results["collectionName"]) || @inQueueTitles.include?(results["collectionName"])%>
 		<p><a href="<%= results["collectionViewUrl"]%>"><img src="<%= results["artworkUrl100"]%>"/></a></p>
+		</div>
+		<div class="top-podcast-info col-xs-8">
 		<p>Title: <%= results["collectionName"] %></p>
 		<p>Artist: <%= results["artistName"] %></p>
 		<br>
@@ -73,7 +84,7 @@
     		<% fields_for @userPods do |u| %>
 		    <%= u.hidden_field(:in_queue, :value => true) %>
 		    <% end %>
-		    <%= f.submit "Add to queue!" %>
+		    <%= f.submit "Add to queue!", class: 'btn btn-sm btn-primary'  %>
 			<% end %>
 			<%= form_for(@podcast) do |f| %>
 				<%= f.hidden_field(:title, :value => results["collectionName"]) %>
@@ -82,9 +93,11 @@
     				<% fields_for @userPods do |u| %>
 		    			<%= u.hidden_field(:in_queue, :value => true) %>
 		    		<% end %>
-		    		<%= f.submit "Add to favorites!" %>
+		    		<%= f.submit "Add to favorites!", class: 'btn btn-sm btn-primary' %>
 		    	<% end %>
 		<% end %>
+	</div>
+	</div>
 	<% end %>
 <% end %>
 </div>
