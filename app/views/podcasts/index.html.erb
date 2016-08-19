@@ -1,55 +1,61 @@
-<div class="podcasts-container">
+<div class="top-genres-container">
   <% if @podcasts %>
     <% @podcasts.results.each do |podcast| %>
-    <div class="wrapper">
-        <div class="images-buttons">
-          <div class="podcast-pic">
+    <div class="panel top-podcasts row">
+      <div class="top-podcast-image col-xs-6 search" id="pod-img">
             <img src="<%= podcast.artworkUrl100 %>">
           </div>
-        <% if user_signed_in? %>
-          <%= form_for(@podcast) do |f| %>
-            <%= f.hidden_field(:title, :value => podcast.collectionName) %>
-            <%= f.hidden_field(:genre, :value => podcast.primaryGenreName) %>
-            <%= f.hidden_field(:artist, :value => podcast.artistName) %>
-            <%= f.hidden_field(:image30, :value => podcast.artworkUrl30) %>
-            <%= f.hidden_field(:image60, :value => podcast.artworkUrl60) %>
-            <%= f.hidden_field(:image100, :value => podcast.artworkUrl100) %>
-              <% fields_for @userPods do |u| %>
-              <%= u.hidden_field(:in_queue, :value => true) %>
-        <% end %>
-          <%= f.submit "Add to queue!", class: 'btn btn-sm btn-primary' %>
-      <% end %>
-        <%= form_for(@podcast) do |f| %>
-          <%= f.hidden_field(:title, :value => podcast.collectionName) %>
-          <%= f.hidden_field(:genre, :value => podcast.primaryGenreName) %>
-          <%= f.hidden_field(:artist, :value => podcast.artistName) %>
-          <%= f.hidden_field(:image30, :value => podcast.artworkUrl30) %>
-          <%= f.hidden_field(:image60, :value => podcast.artworkUrl60) %>
-          <%= f.hidden_field(:image100, :value => podcast.artworkUrl100) %>
-          <% fields_for @userPods do |u| %>
-          <%= u.hidden_field(:favorite, :value => true) %>
-          <% end %>
-          <%= f.submit "Add to favorites!", class: 'btn btn-sm btn-primary' %>
-          <% end %>
-        <% end %>
-        <%= form_for(@podcast) do |f| %>
-          <%= f.hidden_field(:title, :value => podcast.collectionName) %>
-          <%= f.hidden_field(:genre, :value => podcast.primaryGenreName) %>
-          <%= f.hidden_field(:artist, :value => podcast.artistName) %>
-          <%= f.hidden_field(:image30, :value => podcast.artworkUrl30) %>
-          <%= f.hidden_field(:image60, :value => podcast.artworkUrl60) %>
-          <%= f.hidden_field(:image100, :value => podcast.artworkUrl100) %>
-        <%= f.submit "View active discussions", class: 'btn btn-sm btn-primary' %>
-        <% end %>
-        </div>
-        </li>
-      <div class="podcast-content">
+        <div class="top-podcast-info col-xs-6">
             <h3><%= podcast.collectionName %></h3><br>
             Hosts: <%= podcast.artistName %><br>
-            Tags: <% podcast.genres.each do |tag| %><% unless tag == "Podcasts" %><h4><span class="label label-primary"><%= tag %> </span></h4><%end%><%end%><br>
+            Tags: <% podcast.genres.each do |tag| %><% unless tag == "Podcasts" %><h4><span class="label label-primary" id="tags"><%= tag %> </span></h4><%end%><%end%><br>
             <a href=<%= podcast.collectionViewUrl %>>Listen Here</a><br><br>
+        </div>
       </div>
+      <div class="row favorite-queue-discussion">
+        <div class="col-xs-6"><% if user_signed_in? %>
+                <div class="submit-button">
+                  <%= form_for(@podcast) do |f| %>
+                    <%= f.hidden_field(:title, :value => podcast.collectionName) %>
+                    <%= f.hidden_field(:genre, :value => podcast.primaryGenreName) %>
+                    <%= f.hidden_field(:artist, :value => podcast.artistName) %>
+                    <%= f.hidden_field(:image30, :value => podcast.artworkUrl30) %>
+                    <%= f.hidden_field(:image60, :value => podcast.artworkUrl60) %>
+                    <%= f.hidden_field(:image100, :value => podcast.artworkUrl100) %>
+                      <% fields_for @userPods do |u| %>
+                      <%= u.hidden_field(:in_queue, :value => true) %>
+                <% end %>
+                  <%= f.submit "Add to queue!", class: 'btn btn-sm btn-primary' %>
+              <% end %>
+                </div>
+                  <div class="submit-button">
+                <%= form_for(@podcast) do |f| %>
+                  <%= f.hidden_field(:title, :value => podcast.collectionName) %>
+                  <%= f.hidden_field(:genre, :value => podcast.primaryGenreName) %>
+                  <%= f.hidden_field(:artist, :value => podcast.artistName) %>
+                  <%= f.hidden_field(:image30, :value => podcast.artworkUrl30) %>
+                  <%= f.hidden_field(:image60, :value => podcast.artworkUrl60) %>
+                  <%= f.hidden_field(:image100, :value => podcast.artworkUrl100) %>
+                  <% fields_for @userPods do |u| %>
+                  <%= u.hidden_field(:favorite, :value => true) %>
+                  <% end %>
+                    <%= f.submit "Add to favorites!", class: 'btn btn-sm btn-primary' %>
+                  <% end %>
+                <% end %>
+                  </div>
+                <div class="submit-button">
+                <%= form_for(@podcast) do |f| %>
+                  <%= f.hidden_field(:title, :value => podcast.collectionName) %>
+                  <%= f.hidden_field(:genre, :value => podcast.primaryGenreName) %>
+                  <%= f.hidden_field(:artist, :value => podcast.artistName) %>
+                  <%= f.hidden_field(:image30, :value => podcast.artworkUrl30) %>
+                  <%= f.hidden_field(:image60, :value => podcast.artworkUrl60) %>
+                  <%= f.hidden_field(:image100, :value => podcast.artworkUrl100) %>
+                  <%= f.submit "View active discussions", class: 'btn btn-sm btn-primary' %>
+                <% end %>
+                </div>
       </div>
+              </div>
     <% end %>
   <% end %>
 </div>
