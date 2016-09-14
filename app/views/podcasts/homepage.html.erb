@@ -1,8 +1,7 @@
 <div class="search-page">
   <h1 class="title">PodPals</h1>
-
-  <%= form_tag '/podcasts', :method => "get", class: "form-inline" do %>
-  <%= text_field_tag :search, params[:term], class: "form-control", placeholder: "Search for Podcasts" %>
-  <%= submit_tag "Search", class: "btn btn-default"%>
-  <% end %>
+    <%= form_tag '/podcasts', :method => "get", class: "form-inline" do %>
+    <%= text_field_tag :search, params[:term], class: "form-control", placeholder: "Search for Podcasts" %>
+    <%= submit_tag "Search", class: "btn btn-default"%>
+    <% end %>
 </div>

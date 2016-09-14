@@ -1,14 +1,13 @@
-.body-container {
-}
-
 body {
   background-image: url('microphone-background.jpg');
+  background-size: cover;
   font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
-  margin-top: 70px;
   margin: auto;
   width: 80%;
   text-align: center;
 }
+
+
 
 .categories-container {
   margin-top: 70px;
