@@ -1,9 +1,9 @@
 <div class="edit-comment-container">
   <% if @comment.user == current_user %>
     <%= form_for @comment do |f| %>
-      <%= f.label :content %>
-      <%= f.text_area :content, size: "60x12" %>
-      <%= f.submit "Update Comment" %>
+      <h3 style="color:#3abeff;" ><%= f.label :content %></h3><br>
+      <%= f.text_area :content, size: "40x8" %><br>
+      <%= button_to 'Update', @discussion, method: :patch, class: "btn btn-primary" %>
     <% end %>
   <% end %>
 </div>
