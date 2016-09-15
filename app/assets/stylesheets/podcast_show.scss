@@ -14,9 +14,9 @@
 .share {
 /*  border: 1px solid black;*/
   text-align: center;
-  width: 275px;
-  position: absolute;
-  top: 450px;
+  width: 27.5%;
+  position: relative;
+  bottom: 4.5%;
 }
 
 .panel {
@@ -54,7 +54,7 @@
 }
 
 .panel.top-podcasts.row.search-results {
-  max-height: 500px;
+  max-height: 50%;
 }
 
 span.label.label-primary {

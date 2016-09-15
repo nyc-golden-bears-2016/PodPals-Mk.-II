@@ -62,10 +62,10 @@
 
 .favorite-queue-discussion {
   position: relative;
-  bottom: 150px;
+  bottom: 120px;
   text-align: left;
-  left: 18%;
-  width: 300px;
+  left: 3.8%;
+  width: 30%;
 }
 
 .submit-button {
@@ -79,9 +79,15 @@
 }
 
 #tags {
-  display: inline;
+  display: inline-block;
 }
 
 div.panel.top-podcasts.row {
   max-height: 200px;
+}
+
+.top-podcasts-container {
+  width: 70%;
+  min-width: 50%;
+  max-width: 100%;
 }
