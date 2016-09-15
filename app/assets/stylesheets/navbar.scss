@@ -1,20 +1,26 @@
-.navbar-inverse .navbar-nav > li:hover {
-  background-color: #009fb7;
-  color: #eff1f3;
-  transition: .10s;
+#navbar-collapse-1, .navbar-header {
+  color: #696773;
+  background-color: #272727;
+  font-family: 'Roboto Slab';
+  border-radius: 0px 0px 5px 5px; 
 }
 
-.navbar-inverse .navbar-nav > li > a:hover{
+.navbar, .navbar-default {
+  border: 0px;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  background-color: #009fb7;
   color: #eff1f3;
   text-shadow: 1px 1px 50px;
 }
 
-.navbar-inverse .navbar-nav > li > a {
-  color: #696773;
-  background-color: #272727;
-  padding: 15px;
-  font-family: 'Roboto Slab';
+.nav-link > li:hover {
+  color: #eff1f3;
+  transition: .10s;
 }
+
+
 
 .notifications {
   margin-top: 70px;

@@ -11,22 +11,32 @@
     </style>
     <%= csrf_meta_tags %>
   </head>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <div class="nav-container">
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Search", root_path, method: "get", class: "nav-link"%></li>
-            <% if !user_signed_in? %>
-            <li><%= link_to "Login", new_user_session_path, method: "get", class: "nav-link"%></li>
-            <li><%= link_to "Register", new_user_registration_path, method: "get", class: "nav-link"%></li>
-            <% else %>
-            <li><%= link_to current_user.username, "/users/#{current_user.id}", method: "get", class: "nav-link" %></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method: "get", class: "nav-link"%></li>
-            <% end %>
-            <li><%= link_to "Browse Genres", podcasts_genres_path, method: "get", class: "nav-link" %></li>
-            <li><%= link_to "Find Pals", users_path, method: "get" %></li>
-          </ul>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
         </div>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <li><%= link_to "Search", root_path, method: "get", class: "nav-link"%></li>
+          <% if !user_signed_in? %>
+          <li><%= link_to "Login", new_user_session_path, method: "get", class: "nav-link"%></li>
+          <li><%= link_to "Register", new_user_registration_path, method: "get", class: "nav-link"%></li>
+          <% else %>
+          <li><%= link_to current_user.username, "/users/#{current_user.id}", method: "get", class: "nav-link" %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: "get", class: "nav-link"%></li>
+          <% end %>
+          <li><%= link_to "Browse Genres", podcasts_genres_path, method: "get", class: "nav-link" %></li>
+          <li><%= link_to "Find Pals", users_path, method: "get", class: "nav-link" %></li>
+        </li>
+      </ul>
       </div>
     </nav>
     <% if user_signed_in? %>
