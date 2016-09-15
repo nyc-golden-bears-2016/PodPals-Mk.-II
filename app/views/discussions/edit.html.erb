@@ -1,10 +1,31 @@
-<div class="discussion-edit-container">
-  <% if @discussion.user == current_user %>
-    <%= form_for @discussion do |f| %>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-      <%= f.text_area :content, size: "60x12" %>
-      <%= f.submit "Update" %>
-    <% end %>
-  <% end %>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1><%= @discussion.title %></h1>
+      <p><%= @discussion.content %></p>
+    </div>
+    <div class="panel-body">
+      <div class="form discussion-form">
+        <% if @discussion.user == current_user %>
+        <div class="form-group">
+            <%= form_for @discussion do |f| %>
+            <div class="field name col-xs-12">
+            <div class="edit-discussion-form">
+                <%= f.label :title %><br/>
+                <%= f.text_field :title, class: 'form-control' %>
+            <div class="field name col-xs-12">
+                <%= f.label :body %><br/>
+                <%= f.text_area :content, size: "60x12", class: 'form-control' %>
+            </div>
+        <div class="discussion-button">
+                <%= f.submit "Update", class: 'btn btn-sm btn-primary' %>
+            </div>
+        </div>
+            </div>
+          </div>
+      </div>
+          <% end %>
+        <% end %>
+    </div>
+  </div>
 </div>
